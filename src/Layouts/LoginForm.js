@@ -30,7 +30,6 @@ const LoginForm = (props) => {
     }
 
     function validateLogin(username, password) {
-        console.log(`Username: ${username}, Password: ${password}`)
         usersData.forEach((user, index) => {
             if (user.username == username && user.password == password) {
                 setState({
@@ -54,11 +53,11 @@ const LoginForm = (props) => {
         };   
         validateLogin(loginData.username, loginData.password);
     }
-
+    
     return (
         <form onSubmit={e => onSubmit(e)}>
             <RequiredInput id="username" name="username" label="Username" onRequired={valRequired} pattern={/^[a-zA-Z0-9]{3,12}$/} error="Tem de indicar username (3 a 12 caracteres)"/>
-            <RequiredInput id="password" name="password" label="Password" onRequired={valRequired} pattern={/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/} error="Password inválida (>8 caract: 1 maisc, 1 minúsc, 1 núm, 1 símb)"/>
+            <RequiredInput id="password" name="password" label="Password" onRequired={valRequired} pattern={/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/} error="Password inválida (8-15 caract: 1 maisc, 1 minúsc, 1 núm, 1 símb)"/>
             <button type="submit" className="btn btn-primary" disabled={!valid}>Login</button>
         </form>
     );

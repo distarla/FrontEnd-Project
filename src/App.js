@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from 'react-router-dom'
-import LoginPage from './Views/LoginPage';
 import Content from "./Views/Content";
 import './App.css';
 
@@ -11,10 +10,10 @@ function App() {
 
   return (
     <DataContext.Provider value={{state, setState}}>
-      <div>   
-        <Router>
-          <Content></Content>
-        </Router>
+      <div>  
+          <Router>
+            <Content></Content>
+          </Router>
       </div>
     </DataContext.Provider>
   );

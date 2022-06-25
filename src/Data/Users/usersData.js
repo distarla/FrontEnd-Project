@@ -1,3 +1,5 @@
+import { sha256 } from "js-sha256";
+
 const usersData = [{
     id: 1,
     name: 'Joana Fontes',
@@ -26,8 +28,8 @@ const usersData = [{
     id: 4,
     name: 'Emília Ferreira',
     username: 'Emilia',
-    // EmiliaFerreira.4
-    password: 'd599d5df01eedf5c0e518ed8bccbee49e81b756c22b572b53d3dc18fa316c31d',
+    // EmiliaFerr.4
+    password: '198aaf168da59530e5c7c6bbb12005c27ac790c986f9b5eada1f85ac7c05d565',
     level: 2,
 },
 ]
