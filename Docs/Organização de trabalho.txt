@@ -15,9 +15,9 @@ Desenvolvimento:
 
 Git:
 - Usar branch dev para o desenvolvimento
-- Usar um branch do dev por cada componente
 - Fazer pequenos commits e fazer sempre que acabe o html, o css e o javascript
-- No fim de cada compomente, teste, merge para dev, teste geral, escrever uma parte da documentação, push
+- No fim de cada compomente, teste, merge para master
+- No final de cada função major, pull request, teste geral, escrever uma parte da documentação, merge com GitHub
 
 Final:
 - Build e deploy
