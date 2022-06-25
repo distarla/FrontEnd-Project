@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { sha256 } from 'js-sha256';
 import RequiredInput from "../Components/RequiredInput";
 import usersData from "../Data/Users/usersData";
@@ -8,6 +9,7 @@ import './LoginForm.css'
 const LoginForm = (props) => {
 
     const { state, setState } = useContext(DataContext);
+    let navigate = useNavigate();
 
     const [valid, setValid] = useState(false);
     const [validations, setValidations] = useState([
@@ -36,7 +38,7 @@ const LoginForm = (props) => {
                     curName: usersData[index].name,
                     curLevel: usersData[index].level,
                 }); 
-                console.log(state)
+                navigate("/home", { replace: true });
             } else {
                 return false;
             }
