@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { BrowserRouter as Router } from 'react-router-dom'
+import Content from "./Views/Content";
 import './App.css';
 
+import DataContext, { data } from './Data/Users/dataContext'
+
 function App() {
+  const [state, setState] = useState(data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataContext.Provider value={{state, setState}}>
+      <div>  
+          <Router>
+            <Content></Content>
+          </Router>
+      </div>
+    </DataContext.Provider>
   );
 }
 

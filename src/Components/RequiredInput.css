@@ -1,0 +1,6 @@
+.Required{
+    align-self: stretch;
+}
+.Required div {
+    color: red;
+}
