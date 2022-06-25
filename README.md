@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# FLAG - Projeto FrontEnd
+## Event Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project aims to build a backoffice web application which allows users with different access permissions to login and manage the events scheduled on a calendar and the details of the associated clients.
 
-## Available Scripts
+### Using the Application associated Technologies
 
-In the project directory, you can run:
+1.LOGIN PAGE:
 
-### `npm start`
+In this page, the company users, can login to the website, using their previously predefined credentials, which are stored in a local JSON file. The passwords are hashed and its result code is stored which is going to be checked against the hashed code of the inputed password.
+Each user has his own level of access and, when logging in, some components can be or not visible to the user, according to this level. Users with a lower level can only see the data and not edit it.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2.HOME PAGE
+2.1 CALENDAR
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The displayed calendar allows users to quickly and visually see and access the scheduled dates and by that dates, the clients details.
+This calendar is a component created with react moment library and is synced with google calendar using the google calendar API.
+To access the events from the API, the access point XXXX is used and to be able to create new events, the endpoint used is XXXX with a security token XXXXX.
 
-### `npm test`
+2.2 MENU
+The menu allows access to the different options of the application, which can almost all be accessed directly from the calendar.
+The navigation through the content of the menu is done using React-Routes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.2.1. Create New Event
+This option allows the user to search the date for the new event and insert a new entry on the calendar. Next the user is asked, using a modal if he wants the enter the client's data. If yes, a form opens and the data from the form stays associated with that event. It can be later shown by accessing the date.
 
-### `npm run build`
+2.2.2. Change or Delete Event
+By searching the wanted date, the app accesses it and gives the option of changing the event date and, on entering a new one, it associates the client's details with the new date.
+It gives the option of changing client's details by opening the form and presenting a save, cancel and delete button. On delete, it shows a warning message saying it will delete all the details from that client.
+It has the option for deleting the event, showing a warning that the action will delete the date and all the client's details.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2.2.3 Search Events
+This gives the user the option of searching the events by date, years, date range, synce, after, by event description and by client name.
+It offers the possibility of filtering events by some form field and to show or not the client details.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Notes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project was developed using React, git and Git-Hub for version control and Trello for project control.
+It was developed with the aim of being completed on the backend part of the course and further developed by implementing new functionalities and become useful at a real business level.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Further documentation on more detailed development issues can be found at XXXX.
