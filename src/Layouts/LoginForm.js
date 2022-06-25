@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { sha256 } from 'js-sha256';
 import RequiredInput from "../Components/RequiredInput";
+import usersData from "../Data/Users/usersData";
+import DataContext from "../Data/Users/dataContext";
 import './LoginForm.css'
 
 const LoginForm = (props) => {
+
+    const { state, setState } = useContext(DataContext);
 
     const [valid, setValid] = useState(false);
     const [validations, setValidations] = useState([
@@ -22,14 +27,30 @@ const LoginForm = (props) => {
         checkForm();
     }
 
-    // dados do login - hash e comparar password
+    function validateLogin(username, password) {
+        console.log(`Username: ${username}, Password: ${password}`)
+        usersData.forEach((user, index) => {
+            if (user.username == username && user.password == password) {
+                setState({
+                    ...state,
+                    curName: usersData[index].name,
+                    curLevel: usersData[index].level,
+                }); 
+                console.log(state)
+            } else {
+                return false;
+            }
+        })
+    }
+
     function onSubmit (e) {
         e.preventDefault();
-        const addUser = { 
+        let password = sha256(e.target.password.value);
+        const loginData = {
             username: e.target.username.value,
-            password: e.target.password.value,
-        };
-        console.log(addUser);
+            password: password,
+        };   
+        validateLogin(loginData.username, loginData.password);
     }
 
     return (
