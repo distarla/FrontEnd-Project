@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RequiredInput from "../Components/RequiredInput";
+import './LoginForm.css'
 
 const LoginForm = (props) => {
 
