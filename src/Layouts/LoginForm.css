@@ -5,3 +5,10 @@ form {
     flex-direction: column;
     align-items: center;
 }
+#erroLogin {
+    margin-top: 1vh;
+    color: red;
+}
+button {
+    background-color: black;
+}
