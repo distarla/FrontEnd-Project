@@ -1,7 +1,7 @@
 import React from "react";
 import Access from "./Access";
 import AccessComponent from "../Components/AccessComponent";
-import MyCalendar from "../Components/MyCalendar";
+import MyCalendar from "../Components/MyCalendar.jsx";
 
 const Home = (props) => {
     return (
@@ -11,7 +11,10 @@ const Home = (props) => {
             <Access>
                 <AccessComponent level={1}></AccessComponent>
             </Access>
-            <MyCalendar></MyCalendar>
+            <div className="container" width='60vw' heigth='auto' margin='auto'>
+                <MyCalendar></MyCalendar>
+            </div>
+            
         </div>
     )
 }
