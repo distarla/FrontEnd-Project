@@ -1,6 +1,7 @@
 import React from "react";
 import Access from "./Access";
 import AccessComponent from "../Components/AccessComponent";
+import MyCalendar from "../Components/MyCalendar";
 
 const Home = (props) => {
     return (
@@ -10,6 +11,7 @@ const Home = (props) => {
             <Access>
                 <AccessComponent level={1}></AccessComponent>
             </Access>
+            <MyCalendar></MyCalendar>
         </div>
     )
 }
