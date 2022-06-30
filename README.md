@@ -11,6 +11,7 @@ In this page, the company users, can login to the website, using their previousl
 Each user has his own level of access and, when logging in, some components can be or not visible to the user, according to this level. Users with a lower level can only see the data and not edit it.
 
 2.HOME PAGE
+
 2.1 CALENDAR
 
 The displayed calendar allows users to quickly and visually see and access the scheduled dates and by that dates, the clients details.
