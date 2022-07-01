@@ -7,7 +7,7 @@ const LoginPage = (props) => {
 
     return (
         <div className="container">
-            <figure>
+            <figure id="logoLogin">
                 <SvgLogo></SvgLogo>
             </figure>
             <LoginForm></LoginForm>
