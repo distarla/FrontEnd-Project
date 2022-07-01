@@ -4,6 +4,7 @@ import AccessComponent from "../Components/AccessComponent";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import MyModal from "../Components/MyModal";
 import Button from 'react-bootstrap/Button';
+import MyCard from "../Components/MyCard";
 
 const Home = (props) => {
     // Modal
@@ -20,6 +21,7 @@ const Home = (props) => {
             <div className="container" width='60vw' heigth='auto' margin='auto'>
                 <MyCalendar></MyCalendar>
             </div>
+            <MyCard id="event" title="17/02/2022" text="Margarida Martins + André Alves"></MyCard>
             {/* Modal test*/}
             <div>
                 <Button variant="primary" onClick={() => setModalShow(true)}>
