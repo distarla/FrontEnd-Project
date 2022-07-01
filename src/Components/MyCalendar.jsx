@@ -15,21 +15,18 @@ const MyCalendar = (props) => {
         { title: 'event 2', date: '2022-07-02' }
     ]);
 
-    // tirei
-    const [eventShown, setEventShown] = useState({
-        date: '',
-        title:'',
-    })
+    // const [eventShown, setEventShown] = useState({
+    //     date: '',
+    //     title:'',
+    // })
 
-    const eventClicked = (el) => {
-        setEventShown({
-            date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
-            title: el.fcSeg.eventRange.def.title,
-        })
-        console.log(eventShown)
-        // props.modalShow()
-    }
-    // 
+    // const eventClicked = (el) => {
+    //     setEventShown({
+    //         date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
+    //         title: el.fcSeg.eventRange.def.title,
+    //     })
+    //     console.log(eventShown)
+    // }
 
     return (
         <FullCalendar
@@ -48,8 +45,7 @@ const MyCalendar = (props) => {
             views="dayGridMonth,listMonth,listYear"
             initialView="dayGridMonth"
             events={myEvents}
-            eventClick={e => eventClicked(e.el)}
-            // eventClick={e=>props.eventClicked(e.el)}
+            // eventClick={e => eventClicked(e.el)}
             defaultAllDay={true}
             defaultAllDayEventDuration={{ days: 1 }}
             locale="pt-PT"
