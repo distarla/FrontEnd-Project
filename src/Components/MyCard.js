@@ -5,8 +5,9 @@ const MyCard = (props) => {
     return (
         <Card
             {...props}
-            bg="primary"
-            text="light"
+            bg="ligth"
+            text="primary"
+            border="primary"
             id={props.id}
         >
             <Card.Body>
