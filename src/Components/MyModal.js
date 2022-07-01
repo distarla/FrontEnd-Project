@@ -4,6 +4,13 @@ import Button from 'react-bootstrap/Button';
 
 const MyModal = (props) => {
 
+    // const [show, setShow] = useState(false);
+    // const onShow = () => {
+    //     setShow(true);
+    // }
+    // const onHide = () => {
+    //     setShow(false);
+
     return (
         <Modal
             {...props}
@@ -11,6 +18,9 @@ const MyModal = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
             id={props.id}
+            // show={show}
+            // onShow={onShow}
+            // onHide={onHide}
         >
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
@@ -22,7 +32,9 @@ const MyModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary">Save</Button>
+                {/* {props.buttons} */}
                 <Button variant="secondary" onClick={props.onHide}>Close</Button>
+                {/* <Button variant="secondary" onClick={() => setShow(false)}>Close</Button> */}
             </Modal.Footer>
         </Modal>
     );
