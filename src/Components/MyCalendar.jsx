@@ -14,15 +14,39 @@ const MyCalendar = (props) => {
         { title: 'event 2', date: '2022-07-02' }
     ]);
 
+    const addEventButton = {
+        text: 'Add Event',
+        click: function () {
+            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+            
+            if (!isNaN(date.valueOf())) { // valid?
+                calendar.addEvent({
+                    title: 'dynamic event',
+                    start: date,
+                    allDay: true
+                });
+                alert('Great. Now, update your database...');
+            } else {
+                alert('Invalid date.');
+            }
+        }
+    }
+
     return (
         <FullCalendar
             plugins={[dayGridPlugin, listPlugin, bootstrap5Plugin, momentPlugin]}
             headerToolbar={{
-                start: 'today prev,next',
+                start: 'today',
                 center: 'title',
                 end: 'dayGridMonth,listMonth,listYear'
             }}
-            buttonText={{
+            footerToolbar={{
+                start: 'addEventButton',
+                end: 'prev,next'
+            }}
+            customButtons={{ addEventButton }}
+            buttonText = {{
                 today: 'Today',
                 dayGridMonth: 'Month View',
                 listMonth: 'Month List',
