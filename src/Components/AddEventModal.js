@@ -27,11 +27,8 @@ const AddEventModal = (props) => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" form="addEvent" type="submit">Save</Button>
-                    {/*
-                    {props.buttons} */}
-                    {/* <Button variant="secondary" onClick={() => setShow(false)}>Close</Button> */}
-                    <Button variant="secondary" onClick={props.onHide}>Close</Button>
+                    <Button variant="primary" form="addEvent" type="submit">Gravar</Button>
+                    <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
                 </Modal.Footer>
             </Modal>
         </div>

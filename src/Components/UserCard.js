@@ -21,7 +21,14 @@ const UserCard = props => {
     if (user) {
         return (
             <div>
-                <MyCard id="curUser" title="Welcome" text={cardText}></MyCard>
+                <MyCard
+                    id="curUser"
+                    bg="ligth"
+                    text="primary"
+                    border="primary"
+                    title="Bem-vindo(a),"
+                    content={cardText}>
+                </MyCard>
             </div>
         );
     } else {

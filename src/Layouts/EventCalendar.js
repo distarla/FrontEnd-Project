@@ -6,6 +6,7 @@ import ShowEventModal from "../Components/ShowEventModal.js";
 import AddEventModal from "../Components/AddEventModal.js";
 import moment from 'moment';
 import "./EventCalendar.css"
+import ModalDeleteEvent from "../Components/ModalDeleteEvent.js";
 
 
 const EventCalendar = (props) => {
@@ -25,7 +26,28 @@ const EventCalendar = (props) => {
             date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
             title: el.fcSeg.eventRange.def.title,
         })
-        openModalAddEvent();
+        openModalEvent();
+    }
+
+    // Delete Event Modal
+    const [modalDelEventShow, setModalDelEventShow] = useState(false);
+    const closeModalDelEvent = () => setModalDelEventShow(false);
+    const openModalDelEvent = () => setModalDelEventShow(true);
+
+    const [eventToDel, setEventToDel] = useState({
+        date: '',
+        title:'',
+    })
+
+    const confirmDelEvent = () => {
+        console.log(eventShown);
+        closeModalDelEvent();
+    }
+
+    const launchModal = () => {
+        closeModalEvent();
+        openModalDelEvent();
+
     }
 
     // Add Event Modal
@@ -54,6 +76,7 @@ const EventCalendar = (props) => {
                     body={eventShown.title}
                     onHide={closeModalEvent}
                     show={modalEventShow}
+                    onClick={launchModal}
                 />
             </div>
             <div>
@@ -62,6 +85,13 @@ const EventCalendar = (props) => {
                     onHide={closeModalAddEvent}
                     show={modalAddEventShow}
                     onSubmit={addEvent}
+                />
+            </div>
+            <div>
+                <ModalDeleteEvent
+                    show={modalDelEventShow}
+                    onClick={confirmDelEvent}
+                    onHide={closeModalDelEvent}
                 />
             </div>
         </div>

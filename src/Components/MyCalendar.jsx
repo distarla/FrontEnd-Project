@@ -15,7 +15,7 @@ const MyCalendar = (props) => {
     ]);
 
     const addEventButton = {
-        text: 'Add Event',
+        text: 'Adicionar Evento',
         click: function () {
             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
@@ -47,10 +47,10 @@ const MyCalendar = (props) => {
             }}
             customButtons={{ addEventButton }}
             buttonText = {{
-                today: 'Today',
-                dayGridMonth: 'Month View',
-                listMonth: 'Month List',
-                listYear: 'Year List'
+                today: 'Hoje',
+                dayGridMonth: 'Mensal',
+                listMonth: 'Lista Mensal',
+                listYear: 'Lista Anual'
             }}
             views="dayGridMonth,listMonth,listYear"
             initialView="dayGridMonth"

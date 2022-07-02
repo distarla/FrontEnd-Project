@@ -1,8 +1,9 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import MyCard from "./MyCard";
 
-const ShowEventModal = (props) => {
+const ModalDeleteEvent = (props) => {
 
     return (
         <Modal
@@ -10,22 +11,25 @@ const ShowEventModal = (props) => {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            id="showEventModal"
-            onDelete={props.onDelete}
+            id="deleteEventModal"
         >
             <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-                {props.title}
-            </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.body}
+                <MyCard
+                    id="cardDeleteEvent"
+                    bg="danger"
+                    text="light"
+                    border="danger"
+                    title="Aviso!"
+                    content="Esta ação vai apagar todos os dados do evento! Tem a certeza que pretende continuar?"
+                />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="danger" onClick={props.onClick}>Apagar Evento</Button>
+                <Button variant="danger" onClick={props.onClick}>Confirmar</Button>
                 <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
             </Modal.Footer>
         </Modal>
     );
 }
-export default ShowEventModal;
+export default ModalDeleteEvent;
