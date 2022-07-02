@@ -9,10 +9,12 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import "./MyCalendar.css"
 
 const MyCalendar = (props) => {
-    const [myEvents, setMyEvents] = useState([
-        { title: 'event 1', date: '2022-07-01' },
-        { title: 'event 2', date: '2022-07-02' }
-    ]);
+    // const [myEvents, setMyEvents] = useState([
+    //     { title: 'event 1', date: '2022-07-01' },
+    //     { title: 'event 2', date: '2022-07-02' }
+    // ]);
+
+    const [myEvents, setMyEvents] = useState([]);
 
     const addEventButton = {
         text: 'Adicionar Evento',
