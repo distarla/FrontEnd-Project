@@ -4,32 +4,41 @@ import React, {useState} from "react";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import Button from 'react-bootstrap/Button';
 import MyModal from "../Components/MyModal";
+import moment from 'moment';
 import "./EventCalendar.css"
 
 
 const EventCalendar = (props) => {
 
-    // Modal teste
     const [modalShow, setModalShow] = useState(false);
 
     const handleClose = () => setModalShow(false);
     const handleShow = () => setModalShow(true);
 
+    const [eventShown, setEventShown] = useState({
+        date: '',
+        title:'',
+    })
+
+    const eventClicked = (el) => {
+        setEventShown({
+            date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
+            title: el.fcSeg.eventRange.def.title,
+        })
+        handleShow();
+    }
+
+
 
     return (
         <div className="container">
-            <MyCalendar id="myCalendar"></MyCalendar>
+            <MyCalendar id="myCalendar" eventClicked={eventClicked}></MyCalendar>
 
-            {/* Modal test */}
             <div>
-                <Button variant="primary" onClick={handleShow}>
-                    Launch modal
-                </Button>
-
                 <MyModal
                     id="addEvent"
-                    title="Add Event"
-                    body="Event ..."
+                    title={eventShown.date}
+                    body={eventShown.title}
                     onHide={handleClose}
                     show={modalShow}
                 />

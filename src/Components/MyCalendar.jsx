@@ -3,7 +3,6 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import listPlugin from '@fullcalendar/list';
 import momentPlugin from '@fullcalendar/moment'
-import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
@@ -14,19 +13,6 @@ const MyCalendar = (props) => {
         { title: 'event 1', date: '2022-07-01' },
         { title: 'event 2', date: '2022-07-02' }
     ]);
-
-    // const [eventShown, setEventShown] = useState({
-    //     date: '',
-    //     title:'',
-    // })
-
-    // const eventClicked = (el) => {
-    //     setEventShown({
-    //         date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
-    //         title: el.fcSeg.eventRange.def.title,
-    //     })
-    //     console.log(eventShown)
-    // }
 
     return (
         <FullCalendar
@@ -45,7 +31,7 @@ const MyCalendar = (props) => {
             views="dayGridMonth,listMonth,listYear"
             initialView="dayGridMonth"
             events={myEvents}
-            // eventClick={e => eventClicked(e.el)}
+            eventClick={e => props.eventClicked(e.el)}
             defaultAllDay={true}
             defaultAllDayEventDuration={{ days: 1 }}
             locale="pt-PT"
