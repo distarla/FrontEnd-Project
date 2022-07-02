@@ -13,6 +13,7 @@ const MyCalendar = (props) => {
     //     { title: 'event 1', date: '2022-07-01' },
     //     { title: 'event 2', date: '2022-07-02' }
     // ]);
+    
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [myEvents, setMyEvents] = useState([]);
@@ -37,7 +38,7 @@ const MyCalendar = (props) => {
     }
 
     useEffect(() => {
-        fetch("../../public/MockData/events.json")
+        fetch("MockData/events.json")
             .then(res => res.json())
             .then(
                 (data) => {

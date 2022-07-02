@@ -76,7 +76,7 @@ const EventCalendar = (props) => {
                     body={eventShown.title}
                     onHide={closeModalEvent}
                     show={modalEventShow}
-                    onClick={launchModal}
+                    launchModal={launchModal}
                 />
             </div>
             <div>
