@@ -26,8 +26,8 @@ const ModalDeleteEvent = (props) => {
                 />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="danger" onClick={props.onClick}>Confirmar</Button>
-                <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
+                <Button id="delConfirmBtn" variant="danger" onClick={props.onClickDel}>Confirmar</Button>
+                <Button id="delCloseBtn" variant="secondary" onClick={props.onHide}>Fechar</Button>
             </Modal.Footer>
         </Modal>
     );

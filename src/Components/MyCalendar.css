@@ -1,6 +1,6 @@
 .fc-toolbar-title{
     text-align: center;
 }
-.fc-event{
+.fc-event, .fc-daygrid-day-number{
     cursor:pointer;
 }

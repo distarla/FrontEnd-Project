@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 // import Access from "../Views/Access";
 // import AccessComponent from "../Components/AccessComponent";
 import MyCalendar from "../Components/MyCalendar.jsx";
@@ -11,20 +11,34 @@ import AddEvDateModal from "../Components/AddEvDateModal.js";
 
 const EventCalendar = (props) => {
 
+    // Date conversion formulas
+    // const datePtToForm = (date: String) => {
+    //     return moment(date, "DD/MM/YYYY").format("YYYY-MM-DD").toString()
+    // }
+        
+    const dateFormToPT = (date: String) => {
+        return moment(new Date(date)).format("DD/MM/YYYY").toString()
+    }
+
+    // Initial state of fetch variables
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [myOrEvents, setMyOrEvents] = useState([]);
+
     // Show Event Modal
+    const [eventShown, setEventShown] = useState({
+        title: '',
+        date: ''
+    })
+
     const [modalEventShow, setModalEventShow] = useState(false);
     const closeModalEvent = () => setModalEventShow(false);
     const openModalEvent = () => setModalEventShow(true);
 
-    const [eventShown, setEventShown] = useState({
-        date: '',
-        title:'',
-    })
-
     const eventClicked = (el) => {
         setEventShown({
-            date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
             title: el.fcSeg.eventRange.def.title,
+            date: el.fcSeg.eventRange.range.start
         })
         openModalEvent();
     }
@@ -34,36 +48,46 @@ const EventCalendar = (props) => {
     const closeModalDelEvent = () => setModalDelEventShow(false);
     const openModalDelEvent = () => setModalDelEventShow(true);
 
-    const [eventToDel, setEventToDel] = useState({
-        date: '',
-        title:'',
-    })
-
+    // Date to del not correct - Does not delete
     const confirmDelEvent = () => {
-        console.log(eventShown);
+        if (myOrEvents.includes(eventShown)) {
+            let i = myOrEvents.indexOf(eventShown);
+            setMyOrEvents(myOrEvents.splice(i, 1));
+        }
+        console.log(myOrEvents)
         closeModalDelEvent();
     }
 
-    const launchModal = () => {
+    // Warning: Unknown event handler property `onClickDel`. It will be ignored.
+    const clickDel = () => {
         closeModalEvent();
         openModalDelEvent();
-
     }
 
+    // Adds 2 events without correct data (on both add modals) - Next event added, adds data from previous one
     // Add Event Modal
     const [modalAddEventShow, setModalAddEventShow] = useState(false);
     const closeModalAddEvent = () => setModalAddEventShow(false);
     const openModalAddEvent = () => setModalAddEventShow(true);
-
-    const [eventToAdd, setEventToAdd] = useState({
-        date: '',
-        title:'',
-    })
     
+    const dateClicked = (dateStr) => {
+        setEventShown({
+            title: '',
+            date: dateStr
+        });
+        openModalAddEvent();
+    }
+
     const addEvent = (e) => {
         e.preventDefault();
-        console.log(e.target.event.value)
+        setEventShown({
+            title: e.target.event.value,
+            date: eventShown.date
+        });
+        setMyOrEvents([...myOrEvents, eventShown]);
         closeModalAddEvent();
+        console.log(eventShown)
+        console.log(myOrEvents)
     }
 
     // Add Event Date Modal
@@ -73,47 +97,76 @@ const EventCalendar = (props) => {
 
     const addDateEvent = (e) => {
         e.preventDefault();
-        console.log(e.target.event.value, e.target.date.value)
+        setEventShown({
+            title: e.target.event.value,
+            date: e.target.date.value
+        })
+        setMyOrEvents([...myOrEvents, eventShown]);
         closeModalAddEvDate();
+        console.log(eventShown)
+        console.log(myOrEvents)
     }
 
-    return (
-        <div className="container">
-            <MyCalendar id="myCalendar" eventClicked={eventClicked} addEventButtonClick={openModalAddEvDate}></MyCalendar>
+// Fetch API data
+    useEffect(() => {
+        fetch("MockData/events.json")
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    setIsLoaded(true);
+                    setMyOrEvents(data);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+        
+    },[]);
 
-            <div>
-                <ShowEventModal
-                    title={eventShown.date}
-                    body={eventShown.title}
-                    onHide={closeModalEvent}
-                    show={modalEventShow}
-                    launchModal={launchModal}
-                />
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else {
+        return (
+            <div className="container">
+                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={openModalAddEvDate} myEvents={myOrEvents}></MyCalendar>
+
+                <div>
+                    <ShowEventModal
+                        title={dateFormToPT(eventShown.date)}
+                        body={eventShown.title}
+                        onHide={closeModalEvent}
+                        show={modalEventShow}
+                        onClickDel={clickDel}
+                    />
+                </div>
+                <div>
+                    <AddEventModal
+                        date={dateFormToPT(eventShown.date)}
+                        onHide={closeModalAddEvent}
+                        show={modalAddEventShow}
+                        onSubmit={addEvent}
+                    />
+                </div>
+                <div>
+                    <ModalDeleteEvent
+                        show={modalDelEventShow}
+                        onClickDel={confirmDelEvent}
+                        onHide={closeModalDelEvent}
+                    />
+                </div>
+                <div>
+                    <AddEvDateModal
+                        onHide={closeModalAddEvDate}
+                        show={modalAddEvDateShow}
+                        onSubmit={addDateEvent}
+                    />
+                </div>
             </div>
-            <div>
-                <AddEventModal
-                    date={eventToAdd.date}
-                    onHide={closeModalAddEvent}
-                    show={modalAddEventShow}
-                    onSubmit={addEvent}
-                />
-            </div>
-            <div>
-                <ModalDeleteEvent
-                    show={modalDelEventShow}
-                    onClick={confirmDelEvent}
-                    onHide={closeModalDelEvent}
-                />
-            </div>
-            <div>
-                <AddEvDateModal
-                    onHide={closeModalAddEvDate}
-                    show={modalAddEvDateShow}
-                    onSubmit={addDateEvent}
-                />
-            </div>
-        </div>
-    )
+        )
+    }    
 }
 
 export default EventCalendar;

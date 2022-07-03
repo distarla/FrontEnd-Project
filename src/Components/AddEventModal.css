@@ -1,3 +1,9 @@
-p{
-    text-align: center;
+
+#modalBody{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+#addEvent{
+    margin-top: 0;
 }

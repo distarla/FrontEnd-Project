@@ -20,7 +20,7 @@ const AddEventModal = (props) => {
                     Adicionar Novo Evento:
                 </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body id="modalBody">
                     <p>Data: {props.date}</p>
                     <form id="addEvent" onSubmit={props.onSubmit}>
                         <Input id="inputAddEvent" name="event" label="Evento:"></Input>
