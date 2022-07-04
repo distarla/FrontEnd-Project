@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 // import Access from "../Views/Access";
 // import AccessComponent from "../Components/AccessComponent";
 import MyCalendar from "../Components/MyCalendar.jsx";
@@ -11,11 +11,7 @@ import AddEvDateModal from "../Components/AddEvDateModal.js";
 
 const EventCalendar = (props) => {
 
-    // Date conversion formulas
-    // const datePtToForm = (date: String) => {
-    //     return moment(date, "DD/MM/YYYY").format("YYYY-MM-DD").toString()
-    // }
-        
+    // Date conversion formulas        
     const dateFormToPT = (date: String) => {
         return moment(new Date(date)).format("DD/MM/YYYY").toString()
     }
@@ -25,21 +21,36 @@ const EventCalendar = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [myOrEvents, setMyOrEvents] = useState([]);
 
+    // 400 (Bad Request) - Invalid Request (experiencia no addEvent)
+    // Post to API
+    function postData(dataPost) {
+        // const post = dataPost;
+        //console.log(post);
+        //inserir post
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataPost)
+        };
+        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/posts', requestOptions)
+        // fetch("MockData/events.json/posts", requestOptions)
+            .then(response => response.json())
+            .then(data => { console.log(data) }
+            );
+    }
+
     // Show Event Modal
-    const [eventShown, setEventShown] = useState({
-        title: '',
-        date: ''
-    })
+    const eventShown = useRef();
 
     const [modalEventShow, setModalEventShow] = useState(false);
     const closeModalEvent = () => setModalEventShow(false);
     const openModalEvent = () => setModalEventShow(true);
 
     const eventClicked = (el) => {
-        setEventShown({
+        eventShown.current={
             title: el.fcSeg.eventRange.def.title,
             date: el.fcSeg.eventRange.range.start
-        })
+        }
         openModalEvent();
     }
 
@@ -50,8 +61,8 @@ const EventCalendar = (props) => {
 
     // Date to del not correct - Does not delete
     const confirmDelEvent = () => {
-        if (myOrEvents.includes(eventShown)) {
-            let i = myOrEvents.indexOf(eventShown);
+        if (myOrEvents.includes(eventShown.current)) {
+            let i = myOrEvents.indexOf(eventShown.current);
             setMyOrEvents(myOrEvents.splice(i, 1));
         }
         console.log(myOrEvents)
@@ -71,23 +82,25 @@ const EventCalendar = (props) => {
     const openModalAddEvent = () => setModalAddEventShow(true);
     
     const dateClicked = (dateStr) => {
-        setEventShown({
+        eventShown.current={
             title: '',
             date: dateStr
-        });
+        };
         openModalAddEvent();
     }
 
+    // experiência post
     const addEvent = (e) => {
         e.preventDefault();
-        setEventShown({
+        eventShown.current={
             title: e.target.event.value,
             date: eventShown.date
-        });
-        setMyOrEvents([...myOrEvents, eventShown]);
+        };
+        myOrEvents.push(eventShown.current);
+        postData(eventShown.current)
         closeModalAddEvent();
-        console.log(eventShown)
-        console.log(myOrEvents)
+        // console.log(eventShown.current)
+        // console.log(myOrEvents)
     }
 
     // Add Event Date Modal
@@ -97,19 +110,20 @@ const EventCalendar = (props) => {
 
     const addDateEvent = (e) => {
         e.preventDefault();
-        setEventShown({
+        eventShown.current={
             title: e.target.event.value,
             date: e.target.date.value
-        })
-        setMyOrEvents([...myOrEvents, eventShown]);
+        }
+        myOrEvents.push(eventShown.current);
         closeModalAddEvDate();
-        console.log(eventShown)
+        console.log(eventShown.current)
         console.log(myOrEvents)
     }
 
 // Fetch API data
     useEffect(() => {
-        fetch("MockData/events.json")
+        // fetch("MockData/events.json")
+        fetch("https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events")
             .then(res => res.json())
             .then(
                 (data) => {
