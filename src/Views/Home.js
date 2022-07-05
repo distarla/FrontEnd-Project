@@ -1,4 +1,5 @@
 import React from "react";
+import UserCard from "../Components/UserCard";
 import EventCalendar from "../Layouts/EventCalendar";
 // import Access from "./Access"
 // import AccessComponent from "../Components/AccessComponent"
@@ -11,7 +12,7 @@ const Home = (props) => {
         {/* <Access>
             <AccessComponent level={1}></AccessComponent>
         </Access> */}
-        
+            <UserCard></UserCard>
             <EventCalendar></EventCalendar>
         </div>
     )

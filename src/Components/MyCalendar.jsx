@@ -3,7 +3,6 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import listPlugin from '@fullcalendar/list';
 import momentPlugin from '@fullcalendar/moment'
-import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
@@ -15,38 +14,48 @@ const MyCalendar = (props) => {
         { title: 'event 2', date: '2022-07-02' }
     ]);
 
-    const [eventShown, setEventShown] = useState({
-        date: '',
-        title:'',
-    })
-
-    const eventClicked = (el) => {
-        setEventShown({
-            date: moment(new Date(el.fcSeg.eventRange.range.start)).format("DD/MM/YYYY").toString(),
-            title: el.fcSeg.eventRange.def.title,
-        })
-        console.log(eventShown)
-        // props.modalShow()
+    const addEventButton = {
+        text: 'Adicionar Evento',
+        click: function () {
+            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+            
+            if (!isNaN(date.valueOf())) { // valid?
+                calendar.addEvent({
+                    title: 'dynamic event',
+                    start: date,
+                    allDay: true
+                });
+                alert('Great. Now, update your database...');
+            } else {
+                alert('Invalid date.');
+            }
+        }
     }
 
     return (
         <FullCalendar
             plugins={[dayGridPlugin, listPlugin, bootstrap5Plugin, momentPlugin]}
             headerToolbar={{
-                start: 'today prev,next',
+                start: 'today',
                 center: 'title',
                 end: 'dayGridMonth,listMonth,listYear'
             }}
-            buttonText={{
-                today: 'Today',
-                dayGridMonth: 'Month View',
-                listMonth: 'Month List',
-                listYear: 'Year List'
+            footerToolbar={{
+                start: 'addEventButton',
+                end: 'prev,next'
+            }}
+            customButtons={{ addEventButton }}
+            buttonText = {{
+                today: 'Hoje',
+                dayGridMonth: 'Mensal',
+                listMonth: 'Lista Mensal',
+                listYear: 'Lista Anual'
             }}
             views="dayGridMonth,listMonth,listYear"
             initialView="dayGridMonth"
             events={myEvents}
-            eventClick={e=>eventClicked(e.el)}
+            eventClick={e => props.eventClicked(e.el)}
             defaultAllDay={true}
             defaultAllDayEventDuration={{ days: 1 }}
             locale="pt-PT"

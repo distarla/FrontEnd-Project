@@ -1,0 +1,14 @@
+.container{
+    margin-top: 10vh;
+}
+    
+#logo{
+    width: 70%;
+    height:auto;
+    margin: auto;
+    padding: 10% 0;
+}
+
+#title{
+    text-align: center;
+}
