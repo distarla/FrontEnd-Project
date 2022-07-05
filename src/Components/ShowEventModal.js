@@ -22,7 +22,7 @@ const ShowEventModal = (props) => {
                 {props.body}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="danger" onClick={props.onClick}>Apagar Evento</Button>
+                <Button variant="danger" onClick={props.launchModal}>Apagar Evento</Button>
                 <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
             </Modal.Footer>
         </Modal>

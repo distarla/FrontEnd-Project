@@ -7,7 +7,7 @@ import AddEventModal from "../Components/AddEventModal.js";
 import moment from 'moment';
 import "./EventCalendar.css"
 import ModalDeleteEvent from "../Components/ModalDeleteEvent.js";
-
+import AddEvDateModal from "../Components/AddEvDateModal.js";
 
 const EventCalendar = (props) => {
 
@@ -63,12 +63,23 @@ const EventCalendar = (props) => {
     const addEvent = (e) => {
         e.preventDefault();
         console.log(e.target.event.value)
-        closeModalEvent();
+        closeModalAddEvent();
+    }
+
+    // Add Event Date Modal
+    const [modalAddEvDateShow, setModalAddEvDateShow] = useState(false);
+    const closeModalAddEvDate = () => setModalAddEvDateShow(false);
+    const openModalAddEvDate = () => setModalAddEvDateShow(true);
+
+    const addDateEvent = (e) => {
+        e.preventDefault();
+        console.log(e.target.event.value, e.target.date.value)
+        closeModalAddEvDate();
     }
 
     return (
         <div className="container">
-            <MyCalendar id="myCalendar" eventClicked={eventClicked}></MyCalendar>
+            <MyCalendar id="myCalendar" eventClicked={eventClicked} addEventButtonClick={openModalAddEvDate}></MyCalendar>
 
             <div>
                 <ShowEventModal
@@ -76,7 +87,7 @@ const EventCalendar = (props) => {
                     body={eventShown.title}
                     onHide={closeModalEvent}
                     show={modalEventShow}
-                    onClick={launchModal}
+                    launchModal={launchModal}
                 />
             </div>
             <div>
@@ -92,6 +103,13 @@ const EventCalendar = (props) => {
                     show={modalDelEventShow}
                     onClick={confirmDelEvent}
                     onHide={closeModalDelEvent}
+                />
+            </div>
+            <div>
+                <AddEvDateModal
+                    onHide={closeModalAddEvDate}
+                    show={modalAddEvDateShow}
+                    onSubmit={addDateEvent}
                 />
             </div>
         </div>
