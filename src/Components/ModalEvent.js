@@ -2,7 +2,7 @@ import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const ShowEventModal = (props) => {
+const ModalEvent = (props) => {
 
     return (
         <Modal
@@ -10,7 +10,7 @@ const ShowEventModal = (props) => {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            id="showEventModal"
+            id="modalEvent"
         >
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
@@ -27,4 +27,4 @@ const ShowEventModal = (props) => {
         </Modal>
     );
 }
-export default ShowEventModal;
+export default ModalEvent;

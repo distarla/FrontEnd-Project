@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useRef} from "react";
 import MyCalendar from "../Components/MyCalendar.jsx";
-import ShowEventModal from "../Components/ShowEventModal.js";
-import AddEventModal from "../Components/AddEventModal.js";
-import ModalDeleteEvent from "../Components/ModalDeleteEvent.js";
+import ModalEvent from "../Components/ModalEvent.js";
+import ModalAddEvent from "../Components/ModalAddEvent.js";
+import ModalDelEvent from "../Components/ModalDelEvent.js";
 import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import "./EventCalendar.css"
-import { useInsertionEffect } from "react";
 
 const EventCalendar = (props) => {
 
@@ -17,7 +16,6 @@ const EventCalendar = (props) => {
     // Initialization of variables to handle event data
     const [dateModal, setDateModal] = useState("");
     const [eventShown, setEventShown] = useState({});
-    const [eventToAdd, setEventToAdd] = useState();
 
 // =====================
     
@@ -38,9 +36,7 @@ const EventCalendar = (props) => {
     // =========================
 
     // Show Event Modal
-    const [modalEventShow, setModalEventShow] = useState(false);
-    const closeModalEvent = () => setModalEventShow(false);
-    const openModalEvent = () => setModalEventShow(true);
+    const [modalEvent, setModalEvent] = useState(false);
 
     const eventClicked = (el) => {
         setEventShown(
@@ -50,40 +46,35 @@ const EventCalendar = (props) => {
             }
         )
     };
-    useEffect(()=>{openModalEvent();},[eventShown])
+    useEffect(() =>{if (eventShown !== {}){setModalEvent(true);}},[eventShown])
 
     // Delete Event Modal
-    const [modalDelEventShow, setModalDelEventShow] = useState(false);
-    const closeModalDelEvent = () => setModalDelEventShow(false);
-    const openModalDelEvent = () => setModalDelEventShow(true);
+    const [modalDelEvent, setModalDelEvent] = useState(false);
 
     // Date to del not correct - Does not delete/Calendar doesn't re-render
     const confirmDelEvent = () => {
         console.log(eventShown)
         myEvents.forEach((ev, i) => {
-            if (ev.title == eventShown.title && dateStringToPt(ev.date) == dateStringToPt(eventShown.date)) {
+            if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
         });
         // console.log(myEvents)
-        // closeModalDelEvent();
+        // setModalDelEvent(false);
     }
 
     // Warning: Unknown event handler property `onClickDel`. It will be ignored.
     const clickDel = () => {
-        closeModalEvent();
-        openModalDelEvent();
+        setModalEvent(false);
+        setModalDelEvent(true);
     }
 
     // Add Event Modal
-    const [modalAddEventShow, setModalAddEventShow] = useState(false);
-    const closeModalAddEvent = () => setModalAddEventShow(false);
-    const openModalAddEvent = () => setModalAddEventShow(true);
+    const [modalAddEvent, setModalAddEvent] = useState(false);
 
-    // Como Mostar data escolhida - Valor default input date? ou  <p> com data, se tiver (e esconde input e vice-versa), e if no addEvent para adicionar esta, se tiver ou a do input - apagar data no final
     const dateClicked = (dateStr) => {
         setDateModal(dateStr);
-        // openModalAddEvent();
+        setModalAddEvent(true);
     }
     
     const addEvent = (e) => {
@@ -92,20 +83,20 @@ const EventCalendar = (props) => {
             title: e.target.event.value,
             date: e.target.date.value
         }]);
-        console.log(e.target.event.value)
-        // closeModalAddEvent();
+        // setModalAddEvent(false);
     }
 
-    useEffect(() => { openModalAddEvent(); console.log(dateModal) }, [dateModal]);
-    useEffect(() => { openModalAddEvent(); }, [eventToAdd]);
+    useEffect(() => {
+        if (dateModal !== "") { setModalAddEvent(true); console.log(dateModal); }
+    }, [dateModal]); 
 
     // Modals a disparar pelo fetch no primeiro render
     useEffect(() => {
-        if (modalDelEventShow === true) {
-            closeModalDelEvent();
+        if (modalDelEvent === true) {
+            setModalDelEvent(false);
             // postData(myEvents);
-        } else if (modalAddEventShow === true) {
-            closeModalAddEvent();
+        } else if (modalAddEvent === true) {
+            setModalAddEvent(false);
             // postData(eventToAdd):
         }
     }, [myEvents]);
@@ -135,29 +126,31 @@ const EventCalendar = (props) => {
     } else {
         return (
             <div className="container">
-                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={openModalAddEvent} myEvents={myEvents}></MyCalendar>
+                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddEvent(true)} myEvents={myEvents}></MyCalendar>
 
                 <div>
-                    <ShowEventModal
+                    <ModalEvent
                         title={dateStringToPt(eventShown.date)}
                         body={eventShown.title}
-                        onHide={closeModalEvent}
-                        show={modalEventShow}
+                        onHide={()=>setModalEvent(false)}
+                        show={modalEvent}
                         onClickDel={clickDel}
                     />
                 </div>
                 <div>
-                    <ModalDeleteEvent
-                        show={modalDelEventShow}
+                    <ModalDelEvent
+                        show={modalDelEvent}
                         onClickDel={confirmDelEvent}
-                        onHide={closeModalDelEvent}
+                        onHide={()=>setModalDelEvent(false)}
                     />
                 </div>
                 <div>
-                    <AddEventModal
-                        onHide={closeModalAddEvent}
-                        show={modalAddEventShow}
+                    {/* Como alterar input do modal conforme clica no botão adic Ev. ou numa data - No componente modal, como fiz não funciona! */}
+                    <ModalAddEvent
+                        onHide={()=>setModalAddEvent(false)}
+                        show={modalAddEvent}
                         onSubmit={addEvent}
+                        value={dateModal}
                     />
                 </div>
             </div>
