@@ -1,7 +1,8 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
 import ModalAddEvent from "../Components/ModalAddEvent.js";
+import ModalAddDateEvent from "../Components/ModalAddDateEvent.js";
 import ModalDelEvent from "../Components/ModalDelEvent.js";
 import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import "./EventCalendar.css"
@@ -59,7 +60,6 @@ const EventCalendar = (props) => {
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
         });
-        // console.log(myEvents)
         // setModalDelEvent(false);
     }
 
@@ -71,24 +71,45 @@ const EventCalendar = (props) => {
 
     // Add Event Modal
     const [modalAddEvent, setModalAddEvent] = useState(false);
-
+    
     const dateClicked = (dateStr) => {
         setDateModal(dateStr);
-        setModalAddEvent(true);
-    }
-    
-    const addEvent = (e) => {
-        e.preventDefault();
-        setMyEvents([...myEvents, {
-            title: e.target.event.value,
-            date: e.target.date.value
-        }]);
-        // setModalAddEvent(false);
+        // setModalAddEvent(true);
     }
 
     useEffect(() => {
         if (dateModal !== "") { setModalAddEvent(true); console.log(dateModal); }
     }, [dateModal]); 
+
+    const addEvent = (e) => {
+        e.preventDefault();
+        setMyEvents([...myEvents, {
+            title: e.target.event.value,
+            date: dateModal
+        }]);
+        // postData({
+        //     title: e.target.event.value,
+        //     date: dateModal
+        // }):
+        setDateModal('')
+        // setModalAddEvent(false);
+    }
+
+    // Add Event Date Modal
+    const [modalAddDateEvent, setModalAddDateEvent] = useState(false);
+    
+    const addDateEvent = (e) => {
+        e.preventDefault();
+        setMyEvents([...myEvents, {
+            title: e.target.event.value,
+            date: e.target.date.value
+        }]);
+        // postData({
+        //     title: e.target.event.value,
+        //     date: e.target.date.value
+        // }):
+        // setModalAddDateEvent(false);
+    }
 
     // Modals a disparar pelo fetch no primeiro render
     useEffect(() => {
@@ -97,8 +118,9 @@ const EventCalendar = (props) => {
             // postData(myEvents);
         } else if (modalAddEvent === true) {
             setModalAddEvent(false);
-            // postData(eventToAdd):
-        }
+        } else if (modalAddDateEvent === true) {
+            setModalAddDateEvent(false);
+        } 
     }, [myEvents]);
 
 // Fetch API data
@@ -126,7 +148,7 @@ const EventCalendar = (props) => {
     } else {
         return (
             <div className="container">
-                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddEvent(true)} myEvents={myEvents}></MyCalendar>
+                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
 
                 <div>
                     <ModalEvent
@@ -145,12 +167,18 @@ const EventCalendar = (props) => {
                     />
                 </div>
                 <div>
-                    {/* Como alterar input do modal conforme clica no botão adic Ev. ou numa data - No componente modal, como fiz não funciona! */}
                     <ModalAddEvent
+                        date={dateStringToPt(eventShown.date)}
                         onHide={()=>setModalAddEvent(false)}
                         show={modalAddEvent}
                         onSubmit={addEvent}
-                        value={dateModal}
+                    />
+                </div>
+                <div>
+                    <ModalAddDateEvent
+                        onHide={()=>setModalAddDateEvent(false)}
+                        show={modalAddDateEvent}
+                        onSubmit={addDateEvent}
                     />
                 </div>
             </div>

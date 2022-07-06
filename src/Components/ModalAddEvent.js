@@ -6,18 +6,6 @@ import './ModalAddEvent.css'
 
 const ModalAddEvent = (props) => {
 
-    const inputToShow = (date:String) => {
-        if (date === "") {
-            return (
-                <Input id="inputAddEvent" type="date" name="date" label="Data:"></Input>
-            )
-        } else {
-            return (
-                <Input id="inputAddEvent" name="date" label="Data:" value={props.value} readonly></Input>
-            )
-        }
-    }
-
     return (
         <div>
             <Modal
@@ -32,10 +20,10 @@ const ModalAddEvent = (props) => {
                     Adicionar Novo Evento:
                 </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body id="modalBody">
+                    <p>Data: {props.date}</p>
                     <form id="addEvent">
-                        {()=>inputToShow(props.value)}   
-                        <Input id="inputAddEventDate" name="event" label="Evento:"></Input>
+                        <Input id="inputAddEvent" name="event" label="Evento:"></Input>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

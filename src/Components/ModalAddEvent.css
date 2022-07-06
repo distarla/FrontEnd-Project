@@ -1,3 +1,9 @@
-#addDateEvent{
-    margin-bottom: 20%;
+
+#modalBody{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+#addEvent{
+    margin-top: 0;
 }
