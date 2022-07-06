@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import SvgLogo from '../Components/SvgLogo';
-import './NofFound.css'
+import './NotFound.css'
 
 const NotFound = props => (
     <div className="container">
