@@ -168,7 +168,7 @@ const EventCalendar = (props) => {
                 </div>
                 <div>
                     <ModalAddEvent
-                        date={dateStringToPt(eventShown.date)}
+                        date={dateStringToPt(dateModal)}
                         onHide={()=>setModalAddEvent(false)}
                         show={modalAddEvent}
                         onSubmit={addEvent}
