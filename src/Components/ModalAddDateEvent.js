@@ -2,9 +2,9 @@ import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Input from './Input'
-import './AddEventModal.css'
+import './ModalAddDateEvent.css'
 
-const AddEventModal = (props) => {
+const ModalAddDateEvent = (props) => {
 
     return (
         <div>
@@ -13,7 +13,7 @@ const AddEventModal = (props) => {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                id="addEventModal"
+                id="modalAddDateEvent"
             >
                 <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -21,17 +21,17 @@ const AddEventModal = (props) => {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Data: {props.date}</p>
-                    <form id="addEvent" onSubmit={props.onSubmit}>
-                        <Input id="inputAddEvent" name="event" label="Evento:"></Input>
+                    <form id="addDateEvent">
+                        <Input id="inputAddDate" type="date" name="date" label="Data:"></Input>   
+                        <Input id="inputAddEventName" name="event" label="Evento:"></Input>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" form="addEvent" type="submit">Gravar</Button>
+                    <Button variant="primary" form="addDateEvent" onSubmit={props.onSubmit} type="submit">Gravar</Button>
                     <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
                 </Modal.Footer>
             </Modal>
         </div>
     );
 }
-export default AddEventModal;
+export default ModalAddDateEvent;
