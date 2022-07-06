@@ -20,18 +20,17 @@ const EventCalendar = (props) => {
 
 // =====================
     
-    // 400 (Bad Request) - Invalid Request (experiencia no addEvent)
-    // PUT to API
-    const [putState, setPutState] = useState(null); 
-    function putData(put, id) {
+    // POST to API
+    const [postState, setPostState] = useState(null); 
+    function postData(post) {
         const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(put)
+            body: JSON.stringify(post)
         };
-        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/' + id, requestOptions)
+        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/', requestOptions)
             .then(response => response.json())
-            .then(data => setPutState({ postId: data.id }));
+            .then(data => setPostState({ postId: data.id }));
     }
 
     //  DELETE from API
@@ -54,24 +53,21 @@ const EventCalendar = (props) => {
             }
         )
     };
-    // Modals open at first render
+
     useEffect(() =>{if (eventShown !== 1){setModalEvent(true);}},[eventShown])
 
     // Delete Event Modal
     const [modalDelEvent, setModalDelEvent] = useState(false);
 
     const confirmDelEvent = () => {
-        console.log(eventShown)
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
                 delData(i+1);
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
         });
-        // setModalDelEvent(false);
     }
 
-    // Warning: Unknown event handler property `onClickDel`. It will be ignored.
     const clickDel = () => {
         setModalEvent(false);
         setModalDelEvent(true);
@@ -82,26 +78,22 @@ const EventCalendar = (props) => {
     
     const dateClicked = (dateStr) => {
         setDateModal(dateStr);
-        // setModalAddEvent(true);
     }
 
-     // Modals open at first render
     useEffect(() => {
-        if (dateModal !== "1") { setModalAddEvent(true); console.log(dateModal); }
+        if (dateModal !== "1") { setModalAddEvent(true); }
     }, [dateModal]); 
 
     const addEvent = (e) => {
         e.preventDefault();
-        putData({
+        postData({
             title: e.target.event.value,
             date: dateModal
-        }, myEvents.length);
+        });
         setMyEvents([...myEvents, {
             title: e.target.event.value,
             date: dateModal
         }]);
-        setDateModal('');
-        // setModalAddEvent(false);
     }
 
     // Add Event Date Modal
@@ -109,19 +101,16 @@ const EventCalendar = (props) => {
     
     const addDateEvent = (e) => {
         e.preventDefault();
-        putData({
-            id: myEvents.length,
+        postData({
             title: e.target.event.value,
             date: e.target.date.value
-        }, myEvents.length);
+        });
         setMyEvents([...myEvents, {
             title: e.target.event.value,
             date: e.target.date.value
         }]);
-        // setModalAddDateEvent(false);
     }
 
-    // Modals open at first render
     useEffect(() => {
         if (modalDelEvent === true) {
             setModalDelEvent(false);
@@ -147,7 +136,6 @@ const EventCalendar = (props) => {
                     setError(error);
                 }
             )
-        
     },[]);
 
     if (error) {
@@ -171,7 +159,7 @@ const EventCalendar = (props) => {
                 <div>
                     <ModalDelEvent
                         show={modalDelEvent}
-                        onClickDel={confirmDelEvent}
+                        id={confirmDelEvent}
                         onHide={()=>setModalDelEvent(false)}
                     />
                 </div>
