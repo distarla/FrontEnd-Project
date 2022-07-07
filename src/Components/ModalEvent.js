@@ -22,6 +22,7 @@ const ModalEvent = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="danger" onClick={props.id}>Apagar Evento</Button>
+                <Button variant="primary" onClick={props.className}>Editar Evento</Button>
                 <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
             </Modal.Footer>
         </Modal>

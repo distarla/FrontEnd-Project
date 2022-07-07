@@ -6,7 +6,12 @@ const RequiredInput = (props) => {
     const [error,setError] = useState('');
 
     function onChange(el) {
-        const status = props.pattern.test(el.value);
+        var status
+        if (props.type === "date") {
+            status = !isNaN((new Date(el.value)).getDate());
+        } else {
+            status = props.pattern.test(el.value);
+        };
 
         props.onRequired(el.name, status);
 

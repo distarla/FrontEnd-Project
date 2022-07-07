@@ -3,6 +3,7 @@ import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
 import ModalAddEvent from "../Components/ModalAddEvent.js";
 import ModalAddDateEvent from "../Components/ModalAddDateEvent.js";
+import ModalChangeEvent from "../Components/ModalChangeEvent.js";
 import ModalDelEvent from "../Components/ModalDelEvent.js";
 import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import "./EventCalendar.css"
@@ -30,7 +31,19 @@ const EventCalendar = (props) => {
         };
         fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/', requestOptions)
             .then(response => response.json())
-            .then(data => setPostState({ postId: data.id }));
+            .then(data => setPostState({ EventId: data.id }));
+    }
+    // PUT to API
+    const [putState, setPutState] = useState(null); 
+    function putData(put, id) {
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(put)
+        };
+        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/' + id.toString(), requestOptions)
+            .then(response => response.json())
+            .then(data => setPutState({ EventId: data.id }));
     }
 
     //  DELETE from API
@@ -62,7 +75,7 @@ const EventCalendar = (props) => {
     const confirmDelEvent = () => {
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
-                delData(i+1);
+                delData(ev.id);
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
         });
@@ -71,6 +84,31 @@ const EventCalendar = (props) => {
     const clickDel = () => {
         setModalEvent(false);
         setModalDelEvent(true);
+    }
+
+    // Change Event Modal
+    const [modalChangeEvent, setModalChangeEvent] = useState(false);
+
+    const clickChange = () => {
+        setModalEvent(false);
+        setModalChangeEvent(true);
+    }
+
+    const changeEvent = (e) => {
+        e.preventDefault();
+        myEvents.forEach((ev, i) => {
+            if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
+                putData({
+                    title: e.target.event.value,
+                    date: e.target.date.value
+                }, ev.id);
+                setMyEvents([...myEvents.slice(0, i), {
+                    id: ev.id,
+                    title: e.target.event.value,
+                    date: e.target.date.value
+                }, ...myEvents.slice(i + 1, myEvents.length)]);
+            }
+        });
     }
 
     // Add Event Modal
@@ -91,6 +129,7 @@ const EventCalendar = (props) => {
             date: dateModal
         });
         setMyEvents([...myEvents, {
+            id: myEvents[myEvents.length - 1].id + 1,
             title: e.target.event.value,
             date: dateModal
         }]);
@@ -106,6 +145,7 @@ const EventCalendar = (props) => {
             date: e.target.date.value
         });
         setMyEvents([...myEvents, {
+            id: myEvents[myEvents.length - 1].id + 1,
             title: e.target.event.value,
             date: e.target.date.value
         }]);
@@ -116,6 +156,8 @@ const EventCalendar = (props) => {
             setModalDelEvent(false);
         } else if (modalAddEvent === true) {
             setModalAddEvent(false);
+        } else if (modalChangeEvent === true) {
+            setModalChangeEvent(false);
         } else if (modalAddDateEvent === true) {
             setModalAddDateEvent(false);
         } 
@@ -154,6 +196,7 @@ const EventCalendar = (props) => {
                         onHide={()=>setModalEvent(false)}
                         show={modalEvent}
                         id={clickDel}
+                        className={clickChange}
                     />
                 </div>
                 <div>
@@ -161,6 +204,15 @@ const EventCalendar = (props) => {
                         show={modalDelEvent}
                         id={confirmDelEvent}
                         onHide={()=>setModalDelEvent(false)}
+                    />
+                </div>
+                <div>
+                    <ModalChangeEvent
+                        title={eventShown.title}
+                        date={dateStringToPt(eventShown.date)}
+                        onHide={()=>setModalChangeEvent(false)}
+                        show={modalChangeEvent}
+                        onSubmit={changeEvent}
                     />
                 </div>
                 <div>
