@@ -1,4 +1,12 @@
-.container{
+#eventCalendar{
+    margin: auto;
     max-width: 60vw;
-    max-height: auto;
+    max-height: 60vh;
+}
+#calLoader{
+    margin: auto;
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

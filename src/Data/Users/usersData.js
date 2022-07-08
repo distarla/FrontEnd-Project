@@ -1,5 +1,3 @@
-import { sha256 } from "js-sha256";
-
 const usersData = [{
     id: 1,
     name: 'Joana Fontes',

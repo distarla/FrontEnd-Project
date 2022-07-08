@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import Loader from "../Components/Loader"
 import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
 import ModalAddEvent from "../Components/ModalAddEvent.js";
@@ -183,10 +184,10 @@ const EventCalendar = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div id="calLoader"><Loader /></div>;
     } else {
         return (
-            <div className="container">
+            <div id="eventCalendar">
                 <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
 
                 <div>

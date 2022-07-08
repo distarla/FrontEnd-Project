@@ -17,6 +17,7 @@ const MyCalendar = (props) => {
 
     return (
         <FullCalendar
+        nowIndicator
         plugins={[
             dayGridPlugin,
             listPlugin,
@@ -40,6 +41,7 @@ const MyCalendar = (props) => {
             listMonth: "Lista Mensal",
             listYear: "Lista Anual",
         }}
+        dayHeaderFormat={{weekday: "narrow"}}
         views="dayGridMonth,listMonth,listYear"
         initialView="dayGridMonth"
         events={props.myEvents}
@@ -48,7 +50,8 @@ const MyCalendar = (props) => {
         defaultAllDay={true}
         defaultAllDayEventDuration={{ days: 1 }}
         locale="pt-PT"
-        themeSystem="bootstrap5"
+        firstDay={1}
+        themeSystem="bootstrap5"    
         />
     );
 };

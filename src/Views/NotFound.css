@@ -1,14 +1,13 @@
-.container{
+#notFound{
+    margin: auto;
     margin-top: 10vh;
+    width: 60vw;
+    text-align: center;
 }
     
 #logo{
-    width: 70%;
+    width: 50vw;
     height:auto;
     margin: auto;
     padding: 10% 0;
-}
-
-#title{
-    text-align: center;
 }

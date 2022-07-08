@@ -11,7 +11,7 @@ const MyCard = (props) => {
             id={props.id}
         >
             <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
+                <Card.Title bsPrefix={props.bsPrefix || "card-title"}>{props.title}</Card.Title>
                 <Card.Text>
                     {props.content}
                 </Card.Text>

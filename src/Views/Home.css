@@ -1,0 +1,16 @@
+#homeHeader{
+    width: 90vw;
+    display: flex;
+    padding-top: 2%;
+    padding-left: 2%;
+    justify-content: space-between;
+}
+#homeLogo{
+    width: 20vw;
+    height:auto;   
+}
+#eventCalendar{
+    width:50vw;
+    height: 50vh;
+    margin-bottom: 2%;
+}

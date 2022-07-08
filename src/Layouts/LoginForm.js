@@ -38,6 +38,7 @@ const LoginForm = (props) => {
                     ...state,
                     curName: usersData[index].name,
                     curLevel: usersData[index].level,
+                    loggedIn: true,
                 }); 
                 navigate("/home", { replace: true });
             } else {
