@@ -1,3 +1,15 @@
 #alertWelcome{
-    width: 15vw;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (max-width:767px) { 
+    #alertWelcome{
+        width: fit-content;
+        height: fit-content;
+        font-size: 0.75em;
+    }  
+    #heading{
+        font-size: 1em;
+    }
 }

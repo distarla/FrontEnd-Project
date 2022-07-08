@@ -27,7 +27,7 @@ const AlertWelcome = props => {
     return (
         <div id="alertWelcome">
             <Alert show={showAlert} variant="success" onClose={() => setShowAlert(false)} dismissible>
-                <Alert.Heading>Bem-Vindo(a),</Alert.Heading>
+                <Alert.Heading id="heading">Bem-Vindo(a),</Alert.Heading>
                 <p>{alertText}</p>
             </Alert>
         </div>

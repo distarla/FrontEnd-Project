@@ -6,9 +6,9 @@ import ModalAddDateEvent from "../Components/ModalAddDateEvent.js";
 import ModalChangeEvent from "../Components/ModalChangeEvent.js";
 import ModalDelEvent from "../Components/ModalDelEvent.js";
 import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
-import "./EventCalendar.css"
 import { changeAPI, deleteAPI } from "../Data/EventsAPI/ChangeEvRequests.js";
 import { EventsContext } from "../Data/EventsAPI/EventsContext.js";
+import "./EventCalendar.css"
 
 const EventCalendar = (props) => {
 

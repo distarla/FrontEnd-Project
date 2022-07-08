@@ -1,10 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Modal from 'react-bootstrap/Modal';
-import FormChangeEvent from "./FormChangeEvent";
+import Button from 'react-bootstrap/Button';
+import Input from './Input'
+import Alert from 'react-bootstrap/Alert';
 import './ModalChangeEvent.css'
 
-
 const ModalChangeEvent = (props) => {
+
+    const [showAlert, setShowAlert] = useState(true);
+
+    {/* Alert não atualiza estado corretamente */}
+    const alert = () => {
+        if (showAlert) {
+            return (
+                <Alert id="alert" variant="danger" onClose={()=>setShowAlert(false)} dismissible>
+                    <Alert.Heading>Atenção!</Alert.Heading>
+                    <p>
+                        Se alterar os dados do evento, não poderá recuperar os dados anteriores!
+                    </p>
+                </Alert>
+            );
+        };
+    }
 
     return (
         <div>
@@ -27,8 +44,18 @@ const ModalChangeEvent = (props) => {
                         <p className="previousData">Evento: {props.title}</p>
                     </div>
                         <p><b>Novos Dados do Evento:</b></p>
-                    <FormChangeEvent id="changeEvent" onClick={props.onHide} onSubmit={props.onSubmit} />
+                    <form id="changeEvent">
+                        <Input id="inputChangeDate" type="date" name="date" label="Data:"></Input>   
+                        <Input id="inputChangeEvent" name="event" label="Evento:"></Input>
+                    </form>
                 </Modal.Body>
+                <Modal.Footer>
+                    {alert()}
+                    <div id="changeModalButtons">
+                        <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit" disabled={!showAlert}>Alterar Evento</Button>
+                        <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
+                    </div>
+                </Modal.Footer>
             </Modal>
         </div>
     );

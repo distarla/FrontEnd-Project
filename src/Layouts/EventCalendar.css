@@ -1,7 +1,5 @@
 #eventCalendar{
     margin: auto;
-    max-width: 60vw;
-    max-height: 60vh;
 }
 #calLoader{
     margin: auto;
@@ -10,3 +8,4 @@
     justify-content: center;
     align-items: center;
 }
+

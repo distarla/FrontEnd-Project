@@ -1,5 +1,5 @@
 #homeHeader{
-    width: 90vw;
+    width: 95vw;
     display: flex;
     padding-top: 2%;
     padding-left: 2%;
@@ -10,7 +10,16 @@
     height:auto;   
 }
 #eventCalendar{
-    width:50vw;
-    height: 50vh;
+    width:55vw;
+    height: 55vh;
     margin-bottom: 2%;
+}
+
+@media screen and (max-width:767px) { 
+    #eventCalendar{
+        width:70vw;
+        height: 70vh;
+        margin-bottom: 2%;
+        margin-top: 2%;
+    }
 }

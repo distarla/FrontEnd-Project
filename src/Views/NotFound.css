@@ -3,10 +3,11 @@
     margin-top: 10vh;
     width: 60vw;
     text-align: center;
+    font-size: 1.5em;
 }
     
 #logo{
-    width: 50vw;
+    width: 45vw;
     height:auto;
     margin: auto;
     padding: 10% 0;

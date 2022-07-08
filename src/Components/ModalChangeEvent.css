@@ -6,4 +6,16 @@ b{
 }
 #changeEvent{
     margin: 0%;
+    display: block;
+    width: 100%;
+}
+#changeModalButtons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 2%
+}
+#alert{
+    margin: 1% auto 2% auto;
 }
