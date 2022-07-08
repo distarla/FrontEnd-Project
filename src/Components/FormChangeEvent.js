@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RequiredInput from "./RequiredInput";
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import './FormChangeEvent.css'
 
 // import './LoginForm.css'
 
@@ -26,7 +27,6 @@ const FormChangeEvent = (props) => {
         checkForm();
     }
     
-    {/* Alert não atualiza estado corretamente */}
     const alert = () => {
         if (showAlert) {
             return (
@@ -39,8 +39,6 @@ const FormChangeEvent = (props) => {
             );
         };
     }
-
-    useEffect(() => { checkForm(); console.log(valid)},[valid])
     
     return (
         <form id="changeEvent">
@@ -49,8 +47,10 @@ const FormChangeEvent = (props) => {
             name="date" label="Data:" onRequired={valRequired} error="Tem de indicar uma data válida (dd/mm/aaaa)" />
             <RequiredInput id="event" name="event" label="Evento:" onRequired={valRequired} pattern={/^.{3,250}$/} error="Tem que especificar o evento (3-250 carac.)" />
             {alert()}
-            <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit" disabled={!valid}>Alterar Evento</Button>
-            <Button variant="secondary" onClick={props.onClick}>Fechar</Button>
+            <div id="formButtons">
+                <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit">Alterar Evento</Button>
+                <Button variant="secondary" onClick={props.onClick}>Fechar</Button>
+            </div>
         </form>
     );
 

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Loader from "../Components/Loader"
+import React, { useState, useEffect, useContext } from "react";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
 import ModalAddEvent from "../Components/ModalAddEvent.js";
@@ -8,53 +7,19 @@ import ModalChangeEvent from "../Components/ModalChangeEvent.js";
 import ModalDelEvent from "../Components/ModalDelEvent.js";
 import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import "./EventCalendar.css"
+import { changeAPI, deleteAPI } from "../Data/EventsAPI/ChangeEvRequests.js";
+import { EventsContext } from "../Data/EventsAPI/EventsContext.js";
 
 const EventCalendar = (props) => {
 
     // Initial state of fetch variables
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [myEvents, setMyEvents] = useState([]);
+    const { myEvents, setMyEvents } = useContext(EventsContext);
 
     // Initialization of variables to handle event data
     const [dateModal, setDateModal] = useState("1");
     const [eventShown, setEventShown] = useState(1);
 
 // =====================
-    
-    // POST to API
-    const [postState, setPostState] = useState(null); 
-    function postData(post) {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(post)
-        };
-        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/', requestOptions)
-            .then(response => response.json())
-            .then(data => setPostState({ EventId: data.id }));
-    }
-    // PUT to API
-    const [putState, setPutState] = useState(null); 
-    function putData(put, id) {
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(put)
-        };
-        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/' + id.toString(), requestOptions)
-            .then(response => response.json())
-            .then(data => setPutState({ EventId: data.id }));
-    }
-
-    //  DELETE from API
-    const [delState, setDelState] = useState(null);
-    function delData(id) {
-        fetch('https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/' + id, {method: 'DELETE'})
-            .then(() => setDelState({ status: 'Delete successful' }));
-    }
-
-    // =========================
 
     // Show Event Modal
     const [modalEvent, setModalEvent] = useState(false);
@@ -76,7 +41,7 @@ const EventCalendar = (props) => {
     const confirmDelEvent = () => {
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
-                delData(ev.id);
+                deleteAPI(ev.id);
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
         });
@@ -99,7 +64,7 @@ const EventCalendar = (props) => {
         e.preventDefault();
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
-                putData({
+                changeAPI("put", {
                     title: e.target.event.value,
                     date: e.target.date.value
                 }, ev.id);
@@ -125,7 +90,7 @@ const EventCalendar = (props) => {
 
     const addEvent = (e) => {
         e.preventDefault();
-        postData({
+        changeAPI("post", {
             title: e.target.event.value,
             date: dateModal
         });
@@ -141,7 +106,7 @@ const EventCalendar = (props) => {
     
     const addDateEvent = (e) => {
         e.preventDefault();
-        postData({
+        changeAPI("post", {
             title: e.target.event.value,
             date: e.target.date.value
         });
@@ -151,6 +116,8 @@ const EventCalendar = (props) => {
             date: e.target.date.value
         }]);
     }
+
+    // ===================
 
     useEffect(() => {
         if (modalDelEvent === true) {
@@ -164,28 +131,9 @@ const EventCalendar = (props) => {
         } 
     }, [myEvents]);
 
-// Fetch API data
-    useEffect(() => {
-        // fetch("MockData/events.json")
-        fetch("https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events")
-            .then(res => res.json())
-            .then(
-                (data) => {
-                    setIsLoaded(true);
-                    setMyEvents(data);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    },[]);
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div id="calLoader"><Loader /></div>;
-    } else {
+    // ===================
+
         return (
             <div id="eventCalendar">
                 <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
@@ -232,8 +180,7 @@ const EventCalendar = (props) => {
                     />
                 </div>
             </div>
-        )
-    }    
+        )  
 }
 
 export default EventCalendar;
