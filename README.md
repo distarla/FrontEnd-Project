@@ -23,9 +23,9 @@ Each user has his own level of access and, when logging in, some components may 
 
 On rendering the home page, a success alert with the logged user's details appears, along with the calendar.
 The displayed calendar allows users to quickly and visually see and access the scheduled dates and the event details.
-This calendar is a component created with the react fullcalendar library.
+This calendar is a component created with the react @fullcalendar library.
 It offers different views and the below options are available in all of them, except adding event by clicking date, which is only available in the Month View.
-For the events' data, mockAPI was used. The events were accessed through the access point "https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events" and shared with the calendar.
+For the events' data, MockAPI was used. The events were accessed through the access point "https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events" and shared with the calendar.
 All the other HTTP requests use the same endpoint with the :id parameter, if necessary.
 
 2.1.1. Show Event
@@ -64,7 +64,7 @@ Further documentation on detailed development issues and technologies can be fou
 During the execution of this project I had more struggles than I was counting on.
 On a personal level it was a challenge for me to manage the lack of time and exhaustion.
 As for the technological content, even though I was expecting to have some troubles since in fact, we didn't really approached React much in-depth in classes, I was secure that with my easiness to find solutions through research I would be able to overcome them. The reality was that for as much as a solution-getter I could be, the time needed for that, would not had allowed me to finish the project in time. There was a point in which I realized I would really not be able to add more functionalities to the basic objective of the project as the time wasted searching for solutions was too much. As such, I began asking for help, not because I couldn't understand on my own, but because I didn't had the time or was just too exhausted to be able to, even though, in reality, I happened to solve the vast majority of my questions before I got them answered. 
-Specifically speaking on struggles, I struggled a lot with the calendar component. I tried many calendar libraries until I was suggested fullCalendar. Even at that point I struggled with adapting the example code I could find to React and specifically to v18.
+Specifically speaking on struggles, I struggled a lot with the calendar component. I tried many calendar libraries until I was suggested @fullcalendar. Even at that point I struggled with adapting the example code I could find to React and specifically to v18.
 One of my biggest struggles was updating the state throughout some components which wasn't getting me the desired result.
 I also struggled a lot on managing to make the calendar responsive.
 The other issues were mainly a question of never having done it before but solving it through research.
