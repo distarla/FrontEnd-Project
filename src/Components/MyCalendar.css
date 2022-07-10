@@ -1,3 +1,8 @@
+#divCal{ 
+    width: 75vw;
+    height: 75vh;
+    margin: 2vh auto;
+}
 .fc-toolbar-title{
     text-align: center;
 }
@@ -5,16 +10,11 @@
     cursor:pointer;
 }
 
-@media screen and (max-width:767px) { 
-    .fc-toolbar.fc-header-toolbar {
-        flex-direction:column;
-    } 
-    .fc-toolbar-chunk { 
-        display: table-row; 
-        text-align:center; 
-        padding:5px 0; 
-    }
+@media screen and (max-width: 480px) {
     .fc-toolbar.fc-header-toolbar {
         font-size: 60%
+    }
+    .fc-col-header-cell-cushion, .fc-daygrid-day-number, .fc-event-title{
+        font-size: 70%;
     }
 }

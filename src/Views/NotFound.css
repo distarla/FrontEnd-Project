@@ -12,3 +12,12 @@
     margin: auto;
     padding: 10% 0;
 }
+
+@media screen and (max-width: 480px){
+    #notFound{
+        font-size: 1em; 
+    }
+    #logo{
+        width: 50vw;
+    }
+}

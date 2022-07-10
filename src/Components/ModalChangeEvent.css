@@ -19,3 +19,8 @@ b{
 #alert{
     margin: 1% auto 2% auto;
 }
+@media (max-width: 480px) {
+    .text{
+        font-size: 0.75em;
+    }
+}

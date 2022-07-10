@@ -3,3 +3,8 @@
     width: 50vw;
     height: auto;
 }
+@media screen and (max-width: 480px){
+    #logoLogin{
+        width: 55vw;;
+    }
+}

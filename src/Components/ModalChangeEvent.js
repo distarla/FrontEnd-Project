@@ -15,7 +15,7 @@ const ModalChangeEvent = (props) => {
             return (
                 <Alert id="alert" variant="danger" onClose={()=>setShowAlert(false)} dismissible>
                     <Alert.Heading>Atenção!</Alert.Heading>
-                    <p>
+                    <p className="text">
                         Se alterar os dados do evento, não poderá recuperar os dados anteriores!
                     </p>
                 </Alert>
@@ -38,13 +38,13 @@ const ModalChangeEvent = (props) => {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="text">
                         <p><b>Dados Atuais do Evento:</b></p>
                         <p className="previousData">Data: {props.date}</p>
                         <p className="previousData">Evento: {props.title}</p>
                     </div>
-                        <p><b>Novos Dados do Evento:</b></p>
-                    <form id="changeEvent">
+                        <p className="text"><b>Novos Dados do Evento:</b></p>
+                    <form id="changeEvent" className="text">
                         <Input id="inputChangeDate" type="date" name="date" label="Data:"></Input>   
                         <Input id="inputChangeEvent" name="event" label="Evento:"></Input>
                     </form>

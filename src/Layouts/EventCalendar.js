@@ -131,13 +131,13 @@ const EventCalendar = (props) => {
         } 
     }, [myEvents]);
 
-
     // ===================
 
         return (
             <div id="eventCalendar">
-                <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
-
+                <div id="calendar">
+                    <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
+                </div>
                 <div>
                     <ModalEvent
                         title={dateStringToPt(eventShown.date)}
