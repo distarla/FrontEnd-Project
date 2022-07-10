@@ -10,7 +10,6 @@ export const EventsProvider = ({ children }) => {
     const [myEvents, setMyEvents] = useState([]);
 
     useEffect(() => {
-        // fetch("MockData/events.json")
         fetch("https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events")
             .then(res => res.json())
             .then(
@@ -22,8 +21,7 @@ export const EventsProvider = ({ children }) => {
                     setIsLoaded(true);
                     setError(error);
                 }
-            )
-        
+            )    
     }, []);
 
     if (error) {
