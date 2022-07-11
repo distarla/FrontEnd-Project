@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef} from "react";
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import React, {useState, useEffect} from "react";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import momentPlugin from "@fullcalendar/moment";
@@ -11,9 +11,6 @@ import "./MyCalendar.css";
 
 const MyCalendar = (props) => {
 
-    const calendarRef = useRef();
-    // const calAPI = calendarRef.current._calendarAPI.currentDataManager;
-
     const [matches, setMatches] = useState(
         window.matchMedia("(max-width: 768px)").matches
     )
@@ -23,21 +20,12 @@ const MyCalendar = (props) => {
         .matchMedia("(max-width: 768px)")
         .addEventListener('change', e => setMatches( e.matches ));
     }, []);
-
-    // useEffect(() => {
-    //     if (matches) {
-    //         calAPI.setOption('dayHeaderFormat', { weekday: "narrow" });
-    //     } else {
-    //         calAPI.setOption('dayHeaderFormat', { weekday: "long" });
-    //     }
-    // }, [matches])
     
     
     return (
         <div id="divCal" >
             {matches && (
                 <FullCalendar
-                    ref={calendarRef}
                     height="100%"
                     contentHeight="100%"
                     aspectRatio={1}
@@ -84,7 +72,6 @@ const MyCalendar = (props) => {
             )}
             {!matches && (
                 <FullCalendar
-                    ref={calendarRef}
                     height="100%"
                     contentHeight="100%"
                     aspectRatio={1}

@@ -12,7 +12,7 @@ import "./EventCalendar.css"
 
 const EventCalendar = (props) => {
 
-    // Initial state of fetch variables
+    // Initial state of events' data variables
     const { myEvents, setMyEvents } = useContext(EventsContext);
 
     // Initialization of variables to handle event data

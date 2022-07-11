@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Input from './Input'
@@ -6,22 +6,6 @@ import Alert from 'react-bootstrap/Alert';
 import './ModalChangeEvent.css'
 
 const ModalChangeEvent = (props) => {
-
-    const [showAlert, setShowAlert] = useState(true);
-
-    {/* Alert não atualiza estado corretamente */}
-    const alert = () => {
-        if (showAlert) {
-            return (
-                <Alert id="alert" variant="danger" onClose={()=>setShowAlert(false)} dismissible>
-                    <Alert.Heading>Atenção!</Alert.Heading>
-                    <p className="text">
-                        Se alterar os dados do evento, não poderá recuperar os dados anteriores!
-                    </p>
-                </Alert>
-            );
-        };
-    }
 
     return (
         <div>
@@ -50,9 +34,14 @@ const ModalChangeEvent = (props) => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    {alert()}
+                <Alert id="alert" variant="danger" show={true}>
+                    <Alert.Heading>Atenção!</Alert.Heading>
+                    <p className="text">
+                        Se alterar os dados do evento, não poderá recuperar os dados anteriores!
+                    </p>
+                </Alert>
                     <div id="changeModalButtons">
-                        <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit" disabled={!showAlert}>Alterar Evento</Button>
+                        <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit" >Alterar Evento</Button>
                         <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
                     </div>
                 </Modal.Footer>
