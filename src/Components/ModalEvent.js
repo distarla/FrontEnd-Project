@@ -2,7 +2,7 @@ import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Access from '../Views/Access';
-import AccessComponent from './AccessComponent'
+import AccessComponent from "./AccessComponent";
 
 const ModalEvent = (props) => {
 
@@ -23,14 +23,14 @@ const ModalEvent = (props) => {
                 {props.body}
             </Modal.Body>
             <Modal.Footer>
-                <Access>
+            <Access>
                     <AccessComponent level={1}>
                         <Button variant="danger" onClick={props.id}>Apagar Evento</Button>
                     </AccessComponent>
                     <AccessComponent level={1}>
                         <Button variant="primary" onClick={props.className}>Editar Evento</Button>
                     </AccessComponent>
-                </Access>
+            </Access>
                 <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
             </Modal.Footer>
         </Modal>
