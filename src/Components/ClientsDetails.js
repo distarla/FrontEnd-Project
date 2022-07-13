@@ -48,8 +48,8 @@ const ClientsDetails = props => {
                         <Card.Body>
                             <Card.Title>Evento</Card.Title>
                             <Card.Text>
-                                <p><b>Título: </b>{event[0].title}</p>
-                                <p><b>Data: </b>{dateStringToPt(event[0].date)}</p>
+                                <p className="clientPar"><b>Título: </b>{event[0].title}</p>
+                                <p className="clientPar"><b>Data: </b>{dateStringToPt(event[0].date)}</p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -60,25 +60,25 @@ const ClientsDetails = props => {
                                     <Card.Title>Cliente</Card.Title>
                                     <Card.Text>
                                         <div>    
-                                            <p><b>Nome: </b>{client.name}</p>
+                                            <p className="clientPar"><b>Nome: </b>{client.name}</p>
                                         </div>
                                         <hr />
                                         <div>
-                                            <p><b>Morada: </b>{client.address}</p> 
-                                            <p><b>Código Postal: </b>{client.zip}</p>
-                                            <p><b>Cidade: </b>{client.city}</p> 
-                                            <p><b>Pais: </b>{client.country}</p>
+                                            <p className="clientPar"><b>Morada: </b>{client.address}</p> 
+                                            <p className="clientPar"><b>Código Postal: </b>{client.zip}</p>
+                                            <p className="clientPar"><b>Cidade: </b>{client.city}</p> 
+                                            <p className="clientPar"><b>Pais: </b>{client.country}</p>
                                         </div>
                                         <hr />
                                         <div>
-                                            <p><b>Telefone: </b>{client.phone}</p>
-                                            <p><b>Email: </b>{client.mail}</p>
+                                            <p className="clientPar"><b>Telefone: </b>{client.phone}</p>
+                                            <p className="clientPar"><b>Email: </b>{client.mail}</p>
                                         </div>
                                         <hr />
                                         <div>
-                                            <p><b>CC: </b>{client.cc}</p>
-                                            <p><b>Expira em: </b>{client.expiry}</p>
-                                            <p><b>NIF: </b>{client.nif}</p> 
+                                            <p className="clientPar"><b>CC: </b>{client.cc}</p>
+                                            <p className="clientPar"><b>Expira em: </b>{client.expiry}</p>
+                                            <p className="clientPar"><b>NIF: </b>{client.nif}</p> 
                                         </div>        
                                     </Card.Text>
                                 </Card.Body>

@@ -1,14 +1,14 @@
 #clientLogo{
-    width: 70vw;
-    margin: 3vh auto;
+    width: 65vw;
+    margin: 5vh auto;
 }
 #clientHeader{
     width: fit-content;
     margin: auto;
 }
 .clientCard{
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
     border: 1px solid black;
 }
 .client{
@@ -17,12 +17,12 @@
 b{
     font-weight: bold;
 }
-p{
+.clientPar{
     margin-left: 5vw;
 }
 
 @media screen and (max-width: 480px) {
-    p{
+    .clientPar{
         font-size: 0.8em;
     }
 }
