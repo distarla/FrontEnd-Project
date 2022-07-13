@@ -1,5 +1,4 @@
 import React from "react";
-import { EventsProvider } from "../Data/EventsAPI/EventsContext";
 import AlertWelcome from "../Components/AlertWelcome";
 import SvgLogo from '../Components/SvgLogo'
 import EventCalendar from "../Layouts/EventCalendar";
@@ -13,9 +12,7 @@ const Home = (props) => {
                 <div id="homeLogo"><SvgLogo /></div>
                 <AlertWelcome id="alertWelcome" />
             </div>
-            <EventsProvider>
-                <EventCalendar id="eventCalendar" />
-            </EventsProvider>
+            <EventCalendar id="eventCalendar" />
         </div>
     );
 }

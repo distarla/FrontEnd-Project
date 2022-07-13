@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
 import ModalAddEvent from "../Components/ModalAddEvent.js";
@@ -33,7 +34,29 @@ const EventCalendar = (props) => {
         )
     };
 
-    useEffect(() =>{if (eventShown !== 1){setModalEvent(true);}},[eventShown])
+
+    // ==================
+
+    const [eventId, setEventId] = useState("");
+    const navigate = useNavigate();
+    
+    
+    useEffect(() => {
+        if (eventShown !== 1) {
+            myEvents.forEach((ev, i) => {
+                if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
+                    setEventId(ev.id);
+                }
+            });
+            setModalEvent(true);
+        }
+    }, [eventShown])
+
+    const clientShow = () => {
+        navigate("/home/" + eventId)
+    }
+
+    // ==================
 
     // Delete Event Modal
     const [modalDelEvent, setModalDelEvent] = useState(false);
@@ -146,6 +169,7 @@ const EventCalendar = (props) => {
                         show={modalEvent}
                         id={clickDel}
                         className={clickChange}
+                        target={clientShow}
                     />
                 </div>
                 <div>
