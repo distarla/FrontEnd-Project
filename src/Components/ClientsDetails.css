@@ -1,0 +1,28 @@
+#clientLogo{
+    width: 70vw;
+    margin: 3vh auto;
+}
+#clientHeader{
+    width: fit-content;
+    margin: auto;
+}
+.clientCard{
+    margin-left: 3vw;
+    margin-right: 3vw;
+    border: 1px solid black;
+}
+.client{
+    margin-bottom: 3vh;
+}
+b{
+    font-weight: bold;
+}
+p{
+    margin-left: 5vw;
+}
+
+@media screen and (max-width: 480px) {
+    p{
+        font-size: 0.8em;
+    }
+}

@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Access from '../Views/Access';
 import AccessComponent from "./AccessComponent";
+import './ModalEvent.css'
 
 const ModalEvent = (props) => {
 
@@ -20,7 +21,10 @@ const ModalEvent = (props) => {
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.body}
+                <div id="body">
+                    {props.body}
+                    <Button variant="primary" onClick={props.target}>Ver Clientes</Button>
+                </div>
             </Modal.Body>
             <Modal.Footer>
             <Access>
