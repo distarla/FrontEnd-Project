@@ -19,6 +19,10 @@ b{
 #alert{
     margin: 1% auto 2% auto;
 }
+#alertNote{
+    font-size: 0.8em;
+    line-height: 0%;
+}
 @media (max-width: 480px) {
     .text{
         font-size: 0.75em;

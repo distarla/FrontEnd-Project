@@ -37,8 +37,9 @@ const ModalChangeEvent = (props) => {
                 <Alert id="alert" variant="danger" show={true}>
                     <Alert.Heading>Atenção!</Alert.Heading>
                     <p className="text">
-                        Se alterar os dados do evento, não poderá recuperar os dados anteriores!
-                    </p>
+                        Se alterar os dados do evento, não poderá recuperar os dados anteriores! 
+                        </p>
+                        <p id="alertNote">*Os dados dos clientes continuarão anexados ao evento.</p>
                 </Alert>
                     <div id="changeModalButtons">
                         <Button variant="primary" form="changeEvent" onSubmit={props.onSubmit} type="submit" >Alterar Evento</Button>
