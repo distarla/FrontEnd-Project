@@ -1,16 +1,38 @@
 #homeHeader{
-    height: 15vh;
+    height: 23vh;
     display: flex;
-    padding: 2% 5vw 2% 5vw;
+    padding: 0 2%;
     justify-content: space-between;
+    align-items: center;
 }
 #homeLogo{
-    width: 25vw;
-    height:auto;   
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    min-width: 100px;
+    height:120px;   
+}
+#eventCalendar{
+    margin-bottom: 1%;
 }
 
 @media screen and (max-width: 480px){
+    #homeHeader{
+        flex-direction: column;
+        gap: 2vh;
+        justify-content: center;
+        align-items: center;
+    }
     #homeLogo{
-        width: 30vw;   
+        align-self: center;
+        justify-content: center;
+        width: 50%;
+        height:auto;   
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 767px){
+    #homeLogo{
+        min-width: 70px;
+        height:90px;   
     }
 }

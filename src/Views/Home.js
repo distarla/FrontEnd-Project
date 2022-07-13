@@ -10,8 +10,8 @@ const Home = (props) => {
     return (
         <div id="home">
             <div id="homeHeader">
-                <SvgLogo id="homeLogo" />
-                <AlertWelcome />
+                <div id="homeLogo"><SvgLogo /></div>
+                <AlertWelcome id="alertWelcome" />
             </div>
             <EventsProvider>
                 <EventCalendar id="eventCalendar" />

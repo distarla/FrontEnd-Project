@@ -53,10 +53,10 @@ For the user to add new events, and send a POST request to the API, there are tw
 
 ### Notes
 
-This project was developed using React, git and Git-Hub for version control and Trello for project control.
+This project was developed using React, git and GitHub for version control and Trello for project control.
 It was developed with the aim of being completed on the backend part of the course and further developed by implementing new functionalities and become useful at a real business level.
 
-Further documentation on detailed development issues and technologies can be found at Git-Hub Wiki.
+Further documentation on detailed development issues and technologies can be found at GitHub Wiki.
 
 
 ### Work Evaluation
@@ -65,10 +65,10 @@ During the execution of this project I had more struggles than I was counting on
 On a personal level it was a challenge for me to manage the lack of time and exhaustion.
 As for the technological content, even though I was expecting to have some troubles since in fact, we didn't really approached React much in-depth in classes, I was secure that with my easiness to find solutions through research I would be able to overcome them. The reality was that for as much as a solution-getter I could be, the time needed for that, would not had allowed me to finish the project in time. There was a point in which I realized I would really not be able to add more functionalities to the basic objective of the project as the time wasted searching for solutions was too much. As such, I began asking for help, not because I couldn't understand on my own, but because I didn't had the time or was just too exhausted to be able to, even though, in reality, I happened to solve the vast majority of my questions before I got them answered. 
 Specifically speaking on struggles, I struggled a lot with the calendar component. I tried many calendar libraries until I was suggested @fullcalendar. Even at that point I struggled with adapting the example code I could find to React and specifically to v18.
-One of my biggest struggles was updating the state throughout some components which wasn't getting me the desired result.
-I also struggled a lot on managing to make the calendar responsive.
+One of my biggest struggles was updating the state throughout some components which weren't updating at the right time and getting me the desired result.
+I also struggled a lot with the design, particularly on managing to make the calendar responsive. Although I was aiming for a minimalistic design, this area is not one of my strengths since I am not an imaginative person and this plus the fact that practically all I had was a predesigned calendar component left me disappointed with my work.
 The other issues were mainly a question of never having done it before but solving it through research.
-As for project control I also had a bit of a struggle. Since it was my first time using git and Git-Hub, I was aiming to make a commit only when I had a functionality implemented and a push to Git-Hub only with a major implementation and code and css reviewed. It got to a time were I miss some commands, got some errors and to go back to create a new and clean repository would be too much time consuming. I also began to make commits even though I still haven't got the code functioning because I spend too much time without a breakthrough and I wanted to have a history of my tries. I haven't realized yet how to merge only a solution from a branch with a history of failed attempts.
+As for project control I also had a bit of a struggle. Since it was my first time using git and GitHub, I was aiming to make a commit only when I had a functionality implemented and a push to GitHub only with a major implementation and code and css reviewed. It got to a time were I miss some commands, got some errors and to go back to create a new and clean repository would be too much time consuming. I also began to make commits even though I still haven't got the code functioning because I spend too much time without a breakthrough and I wanted to have a history of my tries. I haven't realized yet how to merge only a solution from a branch with a history of failed attempts.
 Also, my file organization needs improvement. As my components were growing I realized maybe a division of function, layers and association between components is a best approach for organizing the files.
 
 As a final result I am glad I was able to finish my first objective but I am disappointed with my final result.
@@ -84,5 +84,5 @@ As for autonomy, I was trying to be 100% autonomous but for time purposes that w
 In conclusion, I tried to apply in this project a bit of all we learn since the beginning of the course.
 I tried to organize my work on a Kanban table, use Figma to draw a flowchart of my initial idea. 
 I believe technologically I approached some issues that we haven't at all or just slightly talked in classes and didn't tried the easiest solutions. 
-The resulting project didn't turn out as I expected but the fact the I know I can do better with more time or experience gives me confidence on the skills I'm learning.
-For all of this, my final evaluation would be 75%.
+The resulting project didn't turn out as I expected but the fact the I know I can do better with more time or experience gives me confidence on the skills I'm learning. I am confident the project presented don't make justice to the time and effort spent on researching, trying, handling errors and learning.
+For all of this, my final evaluation would be 70%.
