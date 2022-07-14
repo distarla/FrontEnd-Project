@@ -33,7 +33,7 @@ const ModalChangeEvent = (props) => {
                 <Alert id="alert" variant="danger" show={true}>
                     <Alert.Heading>Atenção!</Alert.Heading>
                     <p className="text">
-                        Se alterar os dados do evento, não poderá recuperar os dados anteriores! 
+                        Se alterar ou os dados do evento, não poderá recuperar os dados anteriores! 
                         </p>
                         <p id="alertNote">*Os dados dos clientes continuarão anexados ao evento.</p>
                 </Alert>

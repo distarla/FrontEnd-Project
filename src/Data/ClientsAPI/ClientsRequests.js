@@ -23,13 +23,15 @@ const changeClient = (type, data, eventId, clientId = "") => {
 
     fetch(`https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/${eventId}/Clients/${clientId}`, requestOptions) 
         .then(response => response.json())
-        .then(data => {const state={ EventId: data.id }});
+        .then(data => console.log("ClientId: " + data.id ))
+        .catch((err) => console.log(err));
 
 }
 export { changeClient };
 
 const deleteClient = (eventId, clientId) => {
     fetch(`https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/${eventId}/Clients/${clientId}`, {method: 'DELETE'})
-        .then(() => {const state={ status: 'Delete successful' }});
+        .then(() => console.log('Delete successful'))
+        .catch((err) => console.log(err));
 }
 export { deleteClient };

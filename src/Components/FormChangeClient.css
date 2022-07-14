@@ -7,3 +7,7 @@
     width: 100%;
 
 }
+.formFooter{
+    display: flex;
+    gap: 1vw;
+}

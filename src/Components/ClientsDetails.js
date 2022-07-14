@@ -52,16 +52,18 @@ const ClientsDetails = props => {
                     <Card className="clientCard">
                         <Card.Body>
                             <Card.Title>Evento</Card.Title>
-                            <Card.Text>
                                 <p className="clientPar"><b>Título: </b>{event[0].title}</p>
                                 <p className="clientPar"><b>Data: </b>{dateStringToPt(event[0].date)}</p>
-                            </Card.Text>
                         </Card.Body>
                     </Card>
                     <p className="clientPar">Este evento não tem clientes associados!</p>
                     <div id="clientFooter">
-                        {/* <Button variant="primary" onClick={() => navigate("/home/:eventId/chgclient/")}>Voltar</Button> */}
-                        <Button variant="secondary" onHide={() => navigate(-1)}>Voltar</Button></div>
+                    <Access>
+                        <AccessComponent level={1}>
+                            <Button variant="primary" onClick={() => navigate(`/home/${eventId}/addclient/`)}>Adicionar Cliente</Button>
+                        </AccessComponent>
+                    </Access>
+                        <Button variant="secondary" onClick={() => navigate(-1)}>Voltar</Button></div>
                 </div>
             )
         } else {
@@ -110,9 +112,12 @@ const ClientsDetails = props => {
                     )}
                     <div id="clientFooter">
                         <Access>
-                        <AccessComponent level={1}>
-                            <Button variant="primary" onClick={() => navigate(`/home/${eventId}/chgclient/`)}>Alterar Clientes</Button>
-                        </AccessComponent>
+                            <AccessComponent level={1}>
+                                <Button variant="primary" onClick={() => navigate(`/home/${eventId}/chgclient/`)}>Alterar Clientes</Button>
+                            </AccessComponent>
+                            <AccessComponent level={1}>
+                                <Button variant="primary" onClick={() => navigate(`/home/${eventId}/addclient/`)}>Adicionar Cliente</Button>
+                            </AccessComponent>
                         </Access>
                         <Button variant="secondary" onClick={() => navigate(-1)}>Voltar</Button></div>
                 </div>
