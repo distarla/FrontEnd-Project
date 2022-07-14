@@ -90,8 +90,6 @@ const EventCalendar = (props) => {
     const clickDel = () => {
         setModalEvent(false);
         setModalDelEvent(true);
-        console.log(myClients.current)
-
     }
 
     // Change Event Modal
@@ -188,7 +186,7 @@ const EventCalendar = (props) => {
                         show={modalEvent}
                         id={clickDel}
                         className={clickChange}
-                        target={clientShow}
+                        size={clientShow}
                     />
                 </div>
                 <div>
@@ -201,7 +199,7 @@ const EventCalendar = (props) => {
                 <div>
                     <ModalChangeEvent
                         title={eventShown.title}
-                        date={dateStringToPt(eventShown.date)}
+                        date={eventShown.date}
                         onHide={()=>setModalChangeEvent(false)}
                         show={modalChangeEvent}
                         onSubmit={changeEvent}

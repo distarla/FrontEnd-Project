@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Input from './Input'
 import Alert from 'react-bootstrap/Alert';
+import { dateStringToPt } from "../Data/Formulas/formulas";
 import './ModalChangeEvent.css'
 
 const ModalChangeEvent = (props) => {
@@ -22,15 +23,10 @@ const ModalChangeEvent = (props) => {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="text">
-                        <p><b>Dados Atuais do Evento:</b></p>
-                        <p className="previousData">Data: {props.date}</p>
-                        <p className="previousData">Evento: {props.title}</p>
-                    </div>
-                        <p className="text"><b>Novos Dados do Evento:</b></p>
+                        <p className="text"><b>Alterar Dados do Evento:</b></p>
                     <form id="changeEvent" className="text">
-                        <Input id="inputChangeDate" type="date" name="date" label="Data:"></Input>   
-                        <Input id="inputChangeEvent" name="event" label="Evento:"></Input>
+                        <Input id="inputChangeDate" type="date" name="date" label="Data:" value={props.date}></Input>   
+                        <Input id="inputChangeEvent" name="event" label="Evento:" value={props.title}></Input>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

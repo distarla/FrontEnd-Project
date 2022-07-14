@@ -23,7 +23,7 @@ const ModalEvent = (props) => {
             <Modal.Body>
                 <div id="body">
                     {props.body}
-                    <Button variant="primary" onClick={props.target}>Ver Clientes</Button>
+                    <Button variant="primary" onClick={props.size}>Ver Clientes</Button>
                 </div>
             </Modal.Body>
             <Modal.Footer>

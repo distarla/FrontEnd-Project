@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { EventsContext } from "../Data/EventsAPI/EventsContext";
 import { dateStringToPt } from "../Data/Formulas/formulas.js";
+import Access from '../Views/Access';
+import AccessComponent from "./AccessComponent";
 import './ClientsDetails.css'
 
 const ClientsDetails = props => {
@@ -57,7 +59,9 @@ const ClientsDetails = props => {
                         </Card.Body>
                     </Card>
                     <p className="clientPar">Este evento não tem clientes associados!</p>
-                    <div id="clientFooter"><Button variant="secondary" onClick={()=>navigate(-1)}>Voltar</Button></div>
+                    <div id="clientFooter">
+                        {/* <Button variant="primary" onClick={() => navigate("/home/:eventId/chgclient/")}>Voltar</Button> */}
+                        <Button variant="secondary" onHide={() => navigate(-1)}>Voltar</Button></div>
                 </div>
             )
         } else {
@@ -69,10 +73,8 @@ const ClientsDetails = props => {
                     <Card className="clientCard">
                         <Card.Body>
                             <Card.Title>Evento</Card.Title>
-                            <Card.Text>
                                 <p className="clientPar"><b>Título: </b>{event[0].title}</p>
                                 <p className="clientPar"><b>Data: </b>{dateStringToPt(event[0].date)}</p>
-                            </Card.Text>
                         </Card.Body>
                     </Card>
                     {myClients.map((client, index) => {
@@ -80,7 +82,6 @@ const ClientsDetails = props => {
                             <Card key={index} className="clientCard">
                                 <Card.Body>
                                     <Card.Title>Cliente</Card.Title>
-                                    <Card.Text>
                                         <div>
                                             <p className="clientPar"><b>Nome: </b>{client.name}</p>
                                         </div>
@@ -102,13 +103,18 @@ const ClientsDetails = props => {
                                             <p className="clientPar"><b>Expira em: </b>{client.expiry}</p>
                                             <p className="clientPar"><b>NIF: </b>{client.nif}</p>
                                         </div>
-                                    </Card.Text>
                                 </Card.Body>
                             </Card>
                         );
                     }
                     )}
-                    <div id="clientFooter"><Button variant="secondary" onClick={()=>navigate(-1)}>Voltar</Button></div>
+                    <div id="clientFooter">
+                        <Access>
+                        <AccessComponent level={1}>
+                            <Button variant="primary" onClick={() => navigate(`/home/${eventId}/chgclient/`)}>Alterar Clientes</Button>
+                        </AccessComponent>
+                        </Access>
+                        <Button variant="secondary" onClick={() => navigate(-1)}>Voltar</Button></div>
                 </div>
                 
             );
