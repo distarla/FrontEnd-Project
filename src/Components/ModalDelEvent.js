@@ -22,7 +22,7 @@ const ModalDelEvent = (props) => {
                     text="light"
                     border="danger"
                     title="Aviso!"
-                    content="Esta ação vai apagar todos os dados do evento! Tem a certeza que pretende continuar?"
+                    content="Esta ação vai apagar todos os dados do evento e clientes associados! Tem a certeza que pretende continuar?"
                 />
             </Modal.Body>
             <Modal.Footer>

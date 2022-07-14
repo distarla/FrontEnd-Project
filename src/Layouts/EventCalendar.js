@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MyCalendar from "../Components/MyCalendar.jsx";
 import ModalEvent from "../Components/ModalEvent.js";
@@ -10,6 +10,7 @@ import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import { changeAPI, deleteAPI } from "../Data/EventsAPI/ChangeEvRequests.js";
 import { EventsContext } from "../Data/EventsAPI/EventsContext.js";
 import "./EventCalendar.css"
+import { deleteClient } from "../Data/ClientsAPI/ClientsRequests.js";
 
 const EventCalendar = (props) => {
 
@@ -37,6 +38,20 @@ const EventCalendar = (props) => {
 
     // ==================
 
+    var myClients = useRef([]);
+    var errorClient = useRef(null);
+
+    const getClients = (eventId, clientId = "") => {
+        fetch(`https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/${eventId}/Clients/${clientId}`)
+            .then(res => res.json())
+            .then(
+                (data) => { myClients.current=data; },
+                (error) => {
+                    errorClient.current=error;
+                }
+        )
+    };
+
     const [eventId, setEventId] = useState("");
     const navigate = useNavigate();
     
@@ -47,6 +62,7 @@ const EventCalendar = (props) => {
                 if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
                     setEventId(ev.id);
                 }
+                getClients(ev.id);
             });
             setModalEvent(true);
         }
@@ -64,6 +80,7 @@ const EventCalendar = (props) => {
     const confirmDelEvent = () => {
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
+                myClients.current.map((cl) => deleteClient(cl.EventId, cl.id));
                 deleteAPI(ev.id);
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
             }
@@ -73,6 +90,8 @@ const EventCalendar = (props) => {
     const clickDel = () => {
         setModalEvent(false);
         setModalDelEvent(true);
+        console.log(myClients.current)
+
     }
 
     // Change Event Modal
