@@ -7,7 +7,7 @@ import Alert from 'react-bootstrap/Alert'
 import Input from './Input'
 import Button from 'react-bootstrap/Button'
 import { EventsContext } from "../Data/EventsAPI/EventsContext";
-import { dateStringToPt } from "../Data/Formulas/formulas.js";
+import { dateCalToString, dateStringToPt } from "../Data/Formulas/formulas.js";
 import { changeClient, deleteClient } from "../Data/ClientsAPI/ClientsRequests";
 import './FormChangeClient.css'
 
@@ -93,7 +93,7 @@ const FormChangeClient = props => {
                                         <Input id="phone" name="phone" label="Telefone:" value={client.phone} type="number"></Input>
                                         <Input id="mail" name="mail" label="Email:" value={client.mail}></Input>
                                         <Input id="cc" name="cc" label="CC:" value={client.cc}></Input>
-                                        <Input id="expiry" name="expiry" label="Expira em:" value={client.expiry} type="ate"></Input>
+                                        <Input id="expiry" name="expiry" label="Expira em:" value={dateCalToString(client.expiry)} type="date"></Input>
                                         <Input id="nif" name="nif" label="NIF:" value={client.nif}></Input>
                                         <div className="formFooter">
                                             <Button variant="primary" form={client.id} type="submit">Guardar Alterações</Button> 

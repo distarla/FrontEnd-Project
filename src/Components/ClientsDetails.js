@@ -102,7 +102,7 @@ const ClientsDetails = props => {
                                         <hr />
                                         <div>
                                             <p className="clientPar"><b>CC: </b>{client.cc}</p>
-                                            <p className="clientPar"><b>Expira em: </b>{client.expiry}</p>
+                                            <p className="clientPar"><b>Expira em: </b>{dateStringToPt(client.expiry)}</p>
                                             <p className="clientPar"><b>NIF: </b>{client.nif}</p>
                                         </div>
                                 </Card.Body>
