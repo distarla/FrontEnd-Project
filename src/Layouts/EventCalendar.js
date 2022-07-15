@@ -10,8 +10,8 @@ import { dateStringToPt, dateCalToString } from "../Data/Formulas/formulas.js";
 import { changeAPI, deleteAPI } from "../Data/EventsAPI/ChangeEvRequests.js";
 import { EventsContext } from "../Data/EventsAPI/EventsContext.js";
 import "./EventCalendar.css"
-// import { deleteClient } from "../Data/ClientsAPI/ClientsRequests.js";
-// import GetClients from "../Data/ClientsAPI/GetClients.js";
+import { deleteClient } from "../Data/ClientsAPI/ClientsRequests.js";
+import GetClients from "../Data/ClientsAPI/GetClients.js";
 
 const EventCalendar = (props) => {
 
@@ -41,7 +41,7 @@ const EventCalendar = (props) => {
 
     const [eventId, setEventId] = useState("");
     const navigate = useNavigate();
-     // const myClients = GetClients(eventId);
+    const myClients = GetClients(eventId);
     
     useEffect(() => {
         if (eventShown !== 1) {
@@ -66,8 +66,8 @@ const EventCalendar = (props) => {
     const confirmDelEvent = () => {
         myEvents.forEach((ev, i) => {
             if (ev.title === eventShown.title && dateStringToPt(ev.date) === dateStringToPt(eventShown.date)) {
-                 // if (myClients !== []) {
-                //     myClients.map((cl) => deleteClient(cl.EventId, cl.id));
+                // if (myClients !== null) {
+                //     myClients.map(client => deleteClient(eventId, client.id));
                 // };
                 deleteAPI(ev.id);
                 setMyEvents([...myEvents.slice(0, i), ...myEvents.slice(i + 1, myEvents.length)]);
@@ -123,7 +123,7 @@ const EventCalendar = (props) => {
             date: dateModal
         });
         setMyEvents([...myEvents, {
-            id: myEvents[myEvents.length - 1].id + 1,
+            id: (parseInt(myEvents[myEvents.length - 1].id) + 1).toString(),
             title: e.target.event.value,
             date: dateModal
         }]);
@@ -139,7 +139,7 @@ const EventCalendar = (props) => {
             date: e.target.date.value
         });
         setMyEvents([...myEvents, {
-            id: myEvents[myEvents.length - 1].id + 1,
+            id: (parseInt(myEvents[myEvents.length - 1].id) + 1).toString(),
             title: e.target.event.value,
             date: e.target.date.value
         }]);
