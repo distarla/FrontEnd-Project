@@ -160,10 +160,6 @@ const EventCalendar = (props) => {
         } else if (modalAddDateEvent === true) {
             setModalAddDateEvent(false);
         };
-        if (modalDelEvent === false && modalChangeEvent === false && modalEvent === false) {
-            setEventShown(1);
-            setEventId("");
-        };
     }, [myEvents]);
 
     // ===================
