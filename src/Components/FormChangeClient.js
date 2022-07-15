@@ -84,7 +84,7 @@ const FormChangeClient = props => {
                             <Card key={index} className="clientCard">
                                 <Card.Body className="changeClientCard">
                                     <Card.Title>Cliente</Card.Title>
-                                    <form id={client.id} className="changeClientForm" onSubmit={e => editClient(e)}>
+                                    <form id={client.id} className="clientForm" onSubmit={e => editClient(e)}>
                                         <Input id="name" name="name" label="Nome:" value={client.name}></Input>
                                         <Input id="address" name="address" label="Morada:" value={client.address}></Input>
                                         <Input id="zip" name="zip" label="Código Postal:" value={client.zip}></Input>

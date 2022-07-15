@@ -2,7 +2,6 @@ import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Input from './Input'
-import './ModalAddDateEvent.css'
 
 const ModalAddDateEvent = (props) => {
 
@@ -21,7 +20,7 @@ const ModalAddDateEvent = (props) => {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form id="addDateEvent">
+                    <form id="addDateEvent" className="modalForm">
                         <Input id="inputAddDate" type="date" name="date" label="Data:"></Input>   
                         <Input id="inputAddEventName" name="event" label="Evento:"></Input>
                     </form>

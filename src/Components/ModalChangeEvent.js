@@ -24,7 +24,7 @@ const ModalChangeEvent = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                         <p className="text"><b>Alterar Dados do Evento:</b></p>
-                    <form id="changeEvent" className="text">
+                    <form id="changeEvent" className="modalForm text">
                         <Input id="inputChangeDate" type="date" name="date" label="Data:" value={props.date}></Input>   
                         <Input id="inputChangeEvent" name="event" label="Evento:" value={props.title}></Input>
                     </form>

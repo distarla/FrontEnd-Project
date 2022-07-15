@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import { EventsContext } from "../Data/EventsAPI/EventsContext";
 import { dateStringToPt } from "../Data/Formulas/formulas.js";
 import { changeClient } from "../Data/ClientsAPI/ClientsRequests";
-import "./FormAddClient.css";
+
 
 const FormAddClient = (props) => {
     const { eventId } = useParams();
@@ -60,7 +60,7 @@ const FormAddClient = (props) => {
             <Card.Title>Cliente</Card.Title>
             <form
                 id="addClientForm"
-                className="addClientForm"
+                className="clientForm"
                 onSubmit={(e) => addClient(e)}
             >
                 <Input id="name" name="name" label="Nome:"></Input>
