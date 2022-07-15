@@ -22,7 +22,7 @@ const ModalAddEvent = (props) => {
                 </Modal.Header>
                 <Modal.Body id="modalBody">
                     <p>Data: {props.date}</p>
-                    <form id="addEvent">
+                    <form id="addEvent" className="modalForm">
                         <Input id="inputAddEvent" name="event" label="Evento:"></Input>
                     </form>
                 </Modal.Body>

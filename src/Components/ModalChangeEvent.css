@@ -6,8 +6,6 @@ b{
 }
 #changeEvent{
     margin: 0%;
-    display: block;
-    width: 100%;
 }
 #changeModalButtons{
     width: 100%;
@@ -18,9 +16,18 @@ b{
 }
 #alert{
     margin: 1% auto 2% auto;
+    display: block;
+}
+#alertNote{
+    font-size: 0.8em;
+    line-height: 0.8em;
 }
 @media (max-width: 480px) {
     .text{
         font-size: 0.75em;
+    }
+    #alertNote{
+        font-size: 0.6em;
+        line-height: 0.6em;
     }
 }
