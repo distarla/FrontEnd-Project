@@ -82,6 +82,7 @@ It was developed with the aim of being completed on the backend part of the cour
 
 Further documentation on detailed development issues and technologies can be found at GitHub Wiki.
 
+A deployed version of this repository can be found at https://sweet-sunflower-a90c17.netlify.app
 
 ### Work Evaluation
 
