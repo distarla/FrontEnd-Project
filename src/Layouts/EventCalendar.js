@@ -26,14 +26,14 @@ const EventCalendar = (props) => {
     // Initialization of navigation hook
     const navigate = useNavigate();
 
-// =====================
+    // =====================
 
     // Show Event Modal
     const [modalEvent, setModalEvent] = useState(false);
 
     const eventClicked = (el) => {
         setEventShown(
-            {   
+            {
                 title: el.fcSeg.eventRange.def.title,
                 date: dateCalToString(el.fcSeg.eventRange.range.start)
             }
@@ -117,7 +117,7 @@ const EventCalendar = (props) => {
 
     useEffect(() => {
         if (dateModal !== "1") { setModalAddEvent(true); }
-    }, [dateModal]); 
+    }, [dateModal]);
 
     const addEvent = (e) => {
         e.preventDefault();
@@ -130,50 +130,56 @@ const EventCalendar = (props) => {
             title: e.target.event.value,
             date: dateModal
         }]);
-    }
-
-    // Add Event Date Modal
-    const [modalAddDateEvent, setModalAddDateEvent] = useState(false);
+    } 
     
-    const addDateEvent = (e) => {
-        e.preventDefault();
-        changeAPI("post", {
-            title: e.target.event.value,
-            date: e.target.date.value
-        });
-        setMyEvents([...myEvents, {
-            id: (parseInt(myEvents[myEvents.length - 1].id) + 1).toString(),
-            title: e.target.event.value,
-            date: e.target.date.value
-        }]);
-    }
-
-    // ===================
-
     useEffect(() => {
-        if (modalDelEvent === true) {
-            setModalDelEvent(false);
-        } else if (modalAddEvent === true) {
-            setModalAddEvent(false);
-        } else if (modalChangeEvent === true) {
-            setModalChangeEvent(false);
-        } else if (modalAddDateEvent === true) {
-            setModalAddDateEvent(false);
-        };
-    }, [myEvents]);
+        if (modalAddEvent === false) {
+            setDateModal("1");
+        }
+    },[modalAddEvent]);
 
-    // ===================
+        // Add Event Date Modal
+        const [modalAddDateEvent, setModalAddDateEvent] = useState(false);
+    
+        const addDateEvent = (e) => {
+            e.preventDefault();
+            changeAPI("post", {
+                title: e.target.event.value,
+                date: e.target.date.value
+            });
+            setMyEvents([...myEvents, {
+                id: (parseInt(myEvents[myEvents.length - 1].id) + 1).toString(),
+                title: e.target.event.value,
+                date: e.target.date.value
+            }]);
+        }
+
+        // ===================
+
+        useEffect(() => {
+            if (modalDelEvent === true) {
+                setModalDelEvent(false);
+            } else if (modalAddEvent === true) {
+                setModalAddEvent(false);
+            } else if (modalChangeEvent === true) {
+                setModalChangeEvent(false);
+            } else if (modalAddDateEvent === true) {
+                setModalAddDateEvent(false);
+            };
+        }, [myEvents]);
+
+        // ===================
 
         return (
             <div id="eventCalendar">
                 <div id="calendar">
-                    <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={()=>setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
+                    <MyCalendar id="myCalendar" eventClicked={eventClicked} dateClicked={dateClicked} addEventButtonClick={() => setModalAddDateEvent(true)} myEvents={myEvents}></MyCalendar>
                 </div>
                 <div>
                     <ModalEvent
                         title={dateStringToPt(eventShown.date)}
                         body={eventShown.title}
-                        onHide={()=>setModalEvent(false)}
+                        onHide={() => setModalEvent(false)}
                         show={modalEvent}
                         id={clickDel}
                         className={clickChange}
@@ -184,14 +190,14 @@ const EventCalendar = (props) => {
                     <ModalDelEvent
                         show={modalDelEvent}
                         id={confirmDelEvent}
-                        onHide={()=>setModalDelEvent(false)}
+                        onHide={() => setModalDelEvent(false)}
                     />
                 </div>
                 <div>
                     <ModalChangeEvent
                         title={eventShown.title}
                         date={eventShown.date}
-                        onHide={()=>setModalChangeEvent(false)}
+                        onHide={() => setModalChangeEvent(false)}
                         show={modalChangeEvent}
                         onSubmit={changeEvent}
                     />
@@ -199,20 +205,20 @@ const EventCalendar = (props) => {
                 <div>
                     <ModalAddEvent
                         date={dateStringToPt(dateModal)}
-                        onHide={()=>setModalAddEvent(false)}
+                        onHide={() => setModalAddEvent(false)}
                         show={modalAddEvent}
                         onSubmit={addEvent}
                     />
                 </div>
                 <div>
                     <ModalAddDateEvent
-                        onHide={()=>setModalAddDateEvent(false)}
+                        onHide={() => setModalAddDateEvent(false)}
                         show={modalAddDateEvent}
                         onSubmit={addDateEvent}
                     />
                 </div>
             </div>
-        )  
+        )
+    
 }
-
-export default EventCalendar;
+    export default EventCalendar;

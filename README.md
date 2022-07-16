@@ -59,7 +59,7 @@ For the user to add new events, and send a POST request to the API, there are tw
 
 3.1. Clients Details
 
-This page, will use the event Id in the route parameter to access the correct event data and display it on a card. It fetches MockAPI in a different endpoint (https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/:id/Clients) for the clients data and displays each client in a different card. On the bottom there are three buttons that allow the user to edit the clients details (see 3.2), add a new client (see 3.3) or go back to the calendar. 
+This page, will use the event Id in the route parameter to access the correct event data and display it in a card. It fetches MockAPI in a different endpoint (https://62c2f855ff594c65676aea91.mockapi.io/api/v1/Events/:id/Clients) for the clients data and displays each client in a different card. On the bottom there are three buttons that allow the user to edit the clients details (see 3.2), add a new client (see 3.3) or go back to the calendar. 
 If the event doesn't have client's associated, a noticed is showed and only the add client and go back buttons are displayed.
 On both cases, if the user doesn't have permission to edit the data, only the go back button is visible.
 
@@ -90,7 +90,7 @@ During the execution of this project I had more struggles than I was counting on
 On a personal level it was a challenge for me to manage the lack of time and exhaustion.
 As for the technological content, even though I was expecting to have some troubles since in fact, we didn't really approached React much in-depth in classes, I was secure that with my easiness to find solutions through research I would be able to overcome them. The reality was that for as much as a solution-getter I could be, the time needed for that, would not had allowed me to finish the project in time. There was a point in which I realized I would really not be able to add more functionalities to the basic objective of the project as the time wasted searching for solutions was too much. As such, I began asking for help, not because I couldn't understand on my own, but because I didn't had the time or was just too exhausted to be able to, even though, in reality, I happened to solve the vast majority of my questions before I got them answered. 
 Specifically speaking on struggles, I struggled a lot with the calendar component. I tried many calendar libraries until I was suggested @fullcalendar. Even at that point I struggled with adapting the example code I could find to React and specifically to v18.
-One of my biggest struggles was updating the state throughout some components which weren't updating at the right time and getting me the desired result.
+I believe my biggest struggle was updating the state throughout some components which weren't updating at the right time and getting me the desired result so, I needed some help with this part.
 I also struggled a lot with the design, particularly on managing to make the calendar responsive. Although I was aiming for a minimalistic design, this area is not one of my strengths since I am not an imaginative person and this plus the fact that practically all I had was a pre-designed calendar component left me struggling a bit.
 The other issues were mainly a question of never having done it before but solving it through research.
 As for project control I also had a bit of a struggle. Since it was my first time using git and GitHub, I was aiming to make a commit only when I had a functionality implemented and a push to GitHub only with a major implementation and code and css reviewed. It got to a time were I miss some commands, got some errors and to go back to create a new and clean repository would be too much time consuming. I also began to make commits even though I still haven't got the code functioning because I spend too much time without a breakthrough and I wanted to have a history of my tries. I haven't realized yet how to merge only the solution from a branch with a history of failed attempts.
@@ -101,16 +101,11 @@ Also I lacked the comments. Just because I'm not used to them.
 
 All of this are examples of things I know that can be improved with time and practice and will improve also my app's performance.
 
-As I finished my first goal and decided to take an extra step and add more functionalities, I got to an issue with adding an event, deleting it and clicking that same day. It didn't work without clicking another day first.
-Unfortunately I detected that error too late to manage to solve it.
-Also, a few days before the scheduled date for turning in the project, a lot of performance warnings showed up in the console which I didn't get to manage. Through research I found out it was a browser functionality which was turned on in recent updates and is fixable through refactoring css's and code to faster performance ones but also that the frameworks' development environment contributes to these issues.
-Like addressed before, I didn't got the time for code refactoring and, since it were just warnings, I had to let them that way.
-
 As a final result I am glad I was able to finish my first objective and even add more functionalities to this project.
 For my self evaluation, my review on the evaluating criteria is the following:
 
-I believe that the dimension and complexity of the project are according to what was expected but in some ways, aren't according to what I've envisioned. I managed to achieve more than my primary goal and the application is fully functional, except for the small bug I didn't got the time to fix.
-I believe, in some cases, there are better solutions for my code, specially in a reusability perspective but I did take an extra step in assuring my researches were about the most recent versions of the technology and the code was the most efficient.
+I believe that the dimension and complexity of the project are according to what was expected but in some ways, aren't according to what I've envisioned. I managed to achieve more than my primary goal and the application is fully functional.
+I believe, in some cases, there are better solutions for my code, specially in a reusability and performance perspective but I did take an extra step in assuring my researches were about the most recent versions of the technology and the code was the most efficient.
 In some cases though I didn't apply what I considered the best solution because at that time, I had struggles with it, for example, the case of the fetch context.
 Regarding UI/UX, at a design level, my application is really simple. I believe the components fit well together and the usability is what is required for this case.
 application tries to be responsive in all scenarios but, with the calendar on table format and lack of time, this was not an issue I had much time to spend on.
@@ -119,5 +114,5 @@ As for autonomy, I was trying to be 100% autonomous but for time purposes that w
 In conclusion, I tried to apply in this project a bit of all we learn since the beginning of the course.
 I tried to organize my work on a Kanban table, use Figma to draw a flowchart of my initial idea. 
 I believe technologically I approached some issues that we haven't at all or just slightly talked in classes and didn't tried the easiest solutions. 
-The resulting project, in many ways, didn't turn out as I expected but the fact that I know I can do better with more time or experience gives me confidence on the skills I'm learning. I am confident the project presented don't make justice to the time and effort spent on researching, trying, handling errors and learning.
+I am proud of the resulting project, although it didn't turn out as I expected in some ways, but the fact that I know I can do better with more time or experience gives me confidence on the skills I'm learning. I am confident the project presented don't make justice to the time and effort spent on researching, trying, handling errors and learning.
 For all of this, my final evaluation would be 80%.
